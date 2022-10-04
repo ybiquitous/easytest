@@ -14,9 +14,11 @@ module Easytest
 
     def run
       block.call
+      true
     rescue UnmatchedError => error
       loc = error.backtrace_locations[2]
       self.report = Reporter.new(error: error, file: loc.absolute_path, location: loc.to_s).report(name)
+      false
     end
   end
 end

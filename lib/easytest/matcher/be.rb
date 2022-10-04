@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class Equal < Base
+    class Be < Base
       attr_reader :expected
 
       def initialize(actual:, expected:)
@@ -9,12 +9,12 @@ module Easytest
       end
 
       def match?
-        actual == expected
+        actual.equal? expected
       end
 
       def match!
         unless match?
-          raise UnmatchedError.new(message: "should equal", actual: actual, expected: expected)
+          raise UnmatchedError.new(message: "should be same", actual: actual, expected: expected)
         end
       end
     end

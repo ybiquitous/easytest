@@ -8,7 +8,7 @@ module Easytest
 
     def report(test_name)
       <<~MSG
-        #{Rainbow("● #{test_name}").red.bright}
+        #{Rainbow("● #{test_name}").red.bright}  #{Rainbow("(#{@error.message})").dimgray}
 
           #{Rainbow("Expected: #{@error.expected.inspect}").green}
           #{Rainbow("Received: #{@error.actual.inspect}").red}

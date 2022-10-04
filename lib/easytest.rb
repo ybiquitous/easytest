@@ -8,6 +8,7 @@ require_relative "easytest/dsl"
 require_relative "easytest/errors"
 require_relative "easytest/expectation"
 require_relative "easytest/matcher/base"
+require_relative "easytest/matcher/be"
 require_relative "easytest/matcher/be_nil"
 require_relative "easytest/matcher/equal"
 require_relative "easytest/reporter"
@@ -17,9 +18,11 @@ module Easytest
   def self.run
     passed_count = 0
     failed_count = 0
+    file_count = 0
 
     cases_by_file = cases.group_by { |c| c.file }
     cases_by_file.each do |file, cases|
+      file_count += 1
       reports = []
 
       cases.each do |c|
@@ -42,7 +45,7 @@ module Easytest
       end
     end
 
-    [passed_count, failed_count]
+    [passed_count, failed_count, file_count]
   end
 
   def self.cases
@@ -57,7 +60,7 @@ end
 start_time = Time.now
 
 at_exit do
-  passed_count, failed_count = Easytest.run
+  passed_count, failed_count, file_count = Easytest.run
   total_count = passed_count + failed_count
 
   time = Time.now - start_time
@@ -67,13 +70,17 @@ at_exit do
     puts ""
     puts "Please put `test/**/*_test.rb` files or specify valid patterns to the `easytest` command."
   else
-    puts ""
+    summary = ""
     if failed_count == 0
-      puts "#{Rainbow('Summary:').bright} #{Rainbow("#{passed_count} passed").green.bright}, #{total_count} total"
+      summary << Rainbow("#{passed_count} passed").green.bright
     else
-      puts "#{Rainbow('Summary:').bright} #{Rainbow("#{failed_count} failed").red.bright}, " \
-           "#{Rainbow("#{passed_count} passed").green.bright}, #{total_count} total"
+      summary << Rainbow("#{failed_count} failed").red.bright
+      summary << ", #{Rainbow("#{passed_count} passed").green.bright}"
     end
-    puts "#{Rainbow('Time:').bright}    #{time.round(5)} seconds"
+    summary << ", #{total_count} total #{Rainbow("(#{file_count} files)").dimgray}"
+
+    puts ""
+    puts " #{Rainbow('Tests:').bright}  #{summary}"
+    puts " #{Rainbow('Time:').bright}   #{time.round(5)} seconds"
   end
 end

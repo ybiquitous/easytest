@@ -6,6 +6,9 @@ AllCops:
 Layout:
   Enabled: false
 
+Layout/IndentationConsistency:
+  Enabled: true
+
 Style:
   Enabled: false
 

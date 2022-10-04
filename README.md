@@ -45,9 +45,9 @@ $ bundle exec easytest
  Time:   0.00091 seconds
 ```
 
-All tests green! 🎉
+You should see all tests pass.
 
-Now let's add a failed case like this:
+Now let's add a failed case as below:
 
 ```ruby
 test "nil" do
@@ -72,4 +72,4 @@ $ bundle exec easytest
  Time:   0.00095 seconds
 ```
 
-The failed case is expectedly reported! 👍
+You should see the failure report this time.

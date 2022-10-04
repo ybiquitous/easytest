@@ -4,13 +4,13 @@
 
 ## Installation
 
-Via Bundler:
+via Bundler:
 
 ```shell
 bundle add easytest
 ```
 
-Via gem:
+via gem:
 
 ```shell
 gem install easytest

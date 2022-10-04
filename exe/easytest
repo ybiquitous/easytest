@@ -3,4 +3,9 @@
 $LOAD_PATH << File.expand_path("../lib", __dir__)
 $LOAD_PATH << File.join(Dir.pwd, "test")
 
-Dir.glob("test/**/*_test.rb") { |file| load file }
+require "easytest"
+
+test_files = Dir.glob("test/**/*_test.rb").filter do |file|
+  ARGV.empty? || ARGV.any? { |pattern| file.include?(pattern) }
+end
+test_files.each { |file| load file }

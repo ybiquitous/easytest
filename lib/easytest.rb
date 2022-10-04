@@ -35,9 +35,7 @@ module Easytest
       end
     end
 
-    puts "#{Rainbow('Summary:').bright} #{Rainbow("#{failed_count} failed").red.bright}, " \
-         "#{Rainbow("#{passed_count} passed").green.bright}, " \
-         "#{passed_count + failed_count} total"
+    [passed_count, failed_count]
   end
 
   def self.cases
@@ -52,9 +50,18 @@ end
 start_time = Time.now
 
 at_exit do
-  Easytest.run
+  passed_count, failed_count = Easytest.run
+  total_count = passed_count + failed_count
 
   time = Time.now - start_time
 
-  puts "#{Rainbow('Time:').bright}    #{time.round(5)} seconds"
+  if total_count == 0
+    puts Rainbow("A test suite should have at least one test case!").red.bright
+    puts ""
+    puts "Please put `test/**/*_test.rb` files or specify valid patterns to the `easytest` command."
+  else
+    puts "#{Rainbow('Summary:').bright} #{Rainbow("#{failed_count} failed").red.bright}, " \
+         "#{Rainbow("#{passed_count} passed").green.bright}, #{total_count} total"
+    puts "#{Rainbow('Time:').bright}    #{time.round(5)} seconds"
+  end
 end

@@ -9,6 +9,9 @@ Layout:
 Layout/IndentationConsistency:
   Enabled: true
 
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
 Style:
   Enabled: false
 

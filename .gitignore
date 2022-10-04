@@ -7,6 +7,4 @@
 /spec/reports/
 /tmp/
 /Gemfile.lock
-
-# rspec failure tracking
-.rspec_status
+/.gem_rbs_collection

@@ -1,9 +1,11 @@
-RSpec.describe Easytest do
-  it "has a version number" do
-    expect(Easytest::VERSION).not_to be nil
-  end
+require "test_helper"
 
-  it "does something useful" do
-    expect(false).to eq(true)
-  end
+using Easytest::DSL
+
+test "to_eq" do
+  expect("foo").to_eq "bar"
+end
+
+test "to_be_nil" do
+  expect("foo").to_be_nil
 end

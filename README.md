@@ -2,6 +2,10 @@
 
 > makes you write tests easily
 
+## Features
+
+*TODO*
+
 ## Installation
 
 via Bundler:

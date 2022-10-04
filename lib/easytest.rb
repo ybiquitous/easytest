@@ -20,7 +20,7 @@ module Easytest
 
     cases_by_file = cases.group_by { |c| c.file }
     cases_by_file.each do |file, cases|
-      puts "#{Rainbow(" FAIL ").bright.bg(:red)} #{Utils.terminal_hyperlink(file)}"
+      reports = []
 
       cases.each do |c|
         passed = c.run
@@ -29,9 +29,16 @@ module Easytest
           passed_count += 1
         else
           failed_count += 1
-          puts c.report.gsub(/^/, "  ")
-          puts ""
+          reports << c.report.gsub(/^/, "  ")
         end
+      end
+
+      link = Utils.terminal_hyperlink(file)
+      if reports.empty?
+        puts "#{Rainbow(" PASS ").bright.bg(:green)} #{link}"
+      else
+        puts "#{Rainbow(" FAIL ").bright.bg(:red)} #{link}"
+        reports.each { |report| puts report ; puts "" }
       end
     end
 
@@ -60,8 +67,13 @@ at_exit do
     puts ""
     puts "Please put `test/**/*_test.rb` files or specify valid patterns to the `easytest` command."
   else
-    puts "#{Rainbow('Summary:').bright} #{Rainbow("#{failed_count} failed").red.bright}, " \
-         "#{Rainbow("#{passed_count} passed").green.bright}, #{total_count} total"
+    puts ""
+    if failed_count == 0
+      puts "#{Rainbow('Summary:').bright} #{Rainbow("#{passed_count} passed").green.bright}, #{total_count} total"
+    else
+      puts "#{Rainbow('Summary:').bright} #{Rainbow("#{failed_count} failed").red.bright}, " \
+           "#{Rainbow("#{passed_count} passed").green.bright}, #{total_count} total"
+    end
     puts "#{Rainbow('Time:').bright}    #{time.round(5)} seconds"
   end
 end

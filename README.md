@@ -18,7 +18,7 @@ gem install easytest
 
 ## Usage
 
-First, put `test/example_test.rb` including the content:
+First, put `test/example_test.rb` including the content below:
 
 ```ruby
 require "easytest"

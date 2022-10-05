@@ -2,9 +2,14 @@ module Easytest
   module Matcher
     class Base
       attr_reader :actual
+      attr_reader :expected
+      attr_reader :negate
+      alias negate? negate
 
-      def initialize(actual:)
+      def initialize(actual:, expected:, negate: false)
         @actual = actual
+        @expected = expected
+        @negate = negate
       end
 
       def match?
@@ -12,17 +17,22 @@ module Easytest
       end
 
       def match!
-        unless match?
-          raise UnmatchedError.new(message: message, actual: actual, expected: expected)
-        end
-      end
-
-      def expected
-        raise NotImplementedError
+        matched = match?
+        matched = !matched if negate?
+        raise_match_error unless matched
       end
 
       def message
         raise NotImplementedError
+      end
+
+      def build_error_message
+        prefix = negate? ? "should not" : "should"
+        "#{prefix} #{message}"
+      end
+
+      def raise_match_error
+        raise MatchError.new(message: build_error_message, actual: actual, expected: expected)
       end
     end
   end

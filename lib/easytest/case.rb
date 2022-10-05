@@ -15,9 +15,9 @@ module Easytest
     def run
       block.call
       true
-    rescue UnmatchedError => error
-      loc = error.backtrace_locations[2]
-      self.report = Reporter.new(error: error, file: loc.absolute_path, location: loc.to_s).report(name)
+    rescue MatchError => error
+      location = error.backtrace_locations.find { |loc| loc.path.end_with?("_test.rb") } or raise
+      self.report = Reporter.new(error: error, file: location.absolute_path, location: location.to_s).report(name)
       false
     end
   end

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Add many matchers.
+
 ## 0.1.2
 
 - Fix the `easytest` command exit code.

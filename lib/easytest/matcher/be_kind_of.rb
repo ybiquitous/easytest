@@ -1,12 +1,12 @@
 module Easytest
   module Matcher
-    class Be < Base
+    class BeKindOf < Base
       def match?
-        actual.equal? expected
+        actual.kind_of? expected
       end
 
       def message
-        "be same"
+        "be a kind of <class>"
       end
     end
   end

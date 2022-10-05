@@ -8,13 +8,22 @@ require_relative "easytest/cli"
 require_relative "easytest/dsl"
 require_relative "easytest/errors"
 require_relative "easytest/expectation"
-require_relative "easytest/matcher/base"
-require_relative "easytest/matcher/be"
-require_relative "easytest/matcher/be_nil"
-require_relative "easytest/matcher/equal"
 require_relative "easytest/reporter"
 require_relative "easytest/runner"
 require_relative "easytest/utils"
+
+# Matcher
+require_relative "easytest/matcher/base"
+require_relative "easytest/matcher/be"
+require_relative "easytest/matcher/be_a"
+require_relative "easytest/matcher/be_false"
+require_relative "easytest/matcher/be_instance_of"
+require_relative "easytest/matcher/be_kind_of"
+require_relative "easytest/matcher/be_nil"
+require_relative "easytest/matcher/be_true"
+require_relative "easytest/matcher/equal"
+require_relative "easytest/matcher/not_raise"
+require_relative "easytest/matcher/raise"
 
 module Easytest
   def self.start

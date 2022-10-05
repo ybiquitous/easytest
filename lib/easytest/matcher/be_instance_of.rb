@@ -1,12 +1,12 @@
 module Easytest
   module Matcher
-    class Be < Base
+    class BeInstanceOf < Base
       def match?
-        actual.equal? expected
+        actual.instance_of? expected
       end
 
       def message
-        "be same"
+        "be an instance of <class>"
       end
     end
   end

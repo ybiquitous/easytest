@@ -13,7 +13,7 @@ module Easytest
           #{Rainbow("Expected: #{@error.expected.inspect}").green}
           #{Rainbow("Received: #{@error.actual.inspect}").red}
 
-          #{Rainbow("at #{@location}").dimgray}
+          #{Rainbow("# #{@location}").dimgray}
       MSG
     end
   end

@@ -46,7 +46,7 @@ $ bundle exec easytest
     Expected: 2
     Received: 3
 
-    at test/addition_test.rb:6:in `block in <top (required)>'
+    # test/addition_test.rb:6:in `block in <top (required)>'
 
 
  Tests:  1 failed, 0 passed, 1 total (1 files)

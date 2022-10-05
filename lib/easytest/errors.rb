@@ -1,7 +1,7 @@
 module Easytest
   class Error < StandardError; end
 
-  class UnmatchedError < Error
+  class MatchError < Error
     attr_reader :actual
     attr_reader :expected
 

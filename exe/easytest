@@ -5,7 +5,4 @@ $LOAD_PATH << File.join(Dir.pwd, "test")
 
 require "easytest"
 
-test_files = Dir.glob("test/**/*_test.rb").filter do |file|
-  ARGV.empty? || ARGV.any? { |pattern| file.include?(pattern) }
-end
-test_files.each { |file| load file }
+exit Easytest::CLI.new(ARGV).run

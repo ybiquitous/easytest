@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Fix the `easytest` command exit code.
+
 ## 0.1.1
 
 No code changes.

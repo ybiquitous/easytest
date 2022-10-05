@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["CHANGELOG.md", "LICENSE", "README.md", "exe/*", "lib/**/*.rb", "sig/**/*.rbs"]
   spec.bindir = "exe"
-  spec.executables = ["exe/easytest"]
+  spec.executables = ["easytest"]
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rainbow", ">= 3.1"

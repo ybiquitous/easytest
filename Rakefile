@@ -8,5 +8,9 @@ task :test do
   sh "exe/easytest"
 end
 
+desc "Run type-check"
+task :typecheck do
+  sh "bin/steep check --with-expectations"
+end
 
-task default: %i[test rubocop]
+task default: %i[test rubocop typecheck]

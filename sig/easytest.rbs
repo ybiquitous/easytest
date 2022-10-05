@@ -1,0 +1,35 @@
+module Easytest
+  module DSL
+  end
+
+  class Expectation
+    def not: () -> instance
+
+    def to_eq: (untyped expected) -> void
+    alias to_equal to_eq
+
+    def to_be: (untyped expected) -> untyped
+
+    def to_be_nil: () -> void
+
+    def to_be_a: (Class expected) -> void
+    def to_be_kind_of: (Class expected) -> void
+    def to_be_instance_of: (Class expected) -> void
+
+    def to_be_false: () -> void
+    def to_be_true: () -> void
+
+    def to_raise: ((Class | String | Regexp) expected) -> void
+    def to_not_raise: () -> void
+  end
+end
+
+module Kernel
+  def expect: (untyped actual) -> Easytest::Expectation
+            | { () -> void } -> Easytest::Expectation
+end
+
+# polyfill
+class Object
+  def using: (Module target) -> void
+end

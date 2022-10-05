@@ -48,11 +48,12 @@ module Easytest
       Matcher::InstanceOf.new(actual: actual, expected: expected, negate: negate).match!
     end
 
-    def to_raise(exception_class)
+    def to_raise(expected)
       raise FatalError, "`to_raise` requires a block like `expect { ... }.to_raise`" unless block
       raise FatalError, "`not.to_raise` can cause a false positive, so use `to_not_raise` instead" if negate?
+      raise FatalError, "`to_raise` requires a Class, String, or Regexp" unless (expected.is_a?(Class) || expected.is_a?(String) || expected.is_a?(Regexp))
 
-      Matcher::Raise.new(actual: block, expected: exception_class, negate: negate).match!
+      Matcher::Raise.new(actual: block, expected: expected, negate: negate).match!
     end
 
     def to_not_raise

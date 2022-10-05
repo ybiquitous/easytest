@@ -1,4 +1,4 @@
-require "test_helper"
+require "easytest"
 
 using Easytest::DSL
 

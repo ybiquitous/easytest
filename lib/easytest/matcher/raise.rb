@@ -30,7 +30,7 @@ module Easytest
         when Regexp
           actual.message.match? expected
         else
-          raise TypeError.new "Class, String, or Regexp is allowed: #{expected}"
+          false
         end
       end
     end

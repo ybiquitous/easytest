@@ -1,0 +1,23 @@
+---
+- file: test/smoke_test.rb
+  diagnostics:
+  - range:
+      start:
+        line: 5
+        character: 0
+      end:
+        line: 5
+        character: 18
+    severity: ERROR
+    message: More positional arguments are required
+    code: Ruby::InsufficientPositionalArguments
+  - range:
+      start:
+        line: 5
+        character: 19
+      end:
+        line: 17
+        character: 3
+    severity: ERROR
+    message: The method cannot be called with a block
+    code: Ruby::UnexpectedBlockGiven

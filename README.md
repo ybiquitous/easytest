@@ -22,20 +22,17 @@ gem install easytest
 
 ## Usage
 
-First, put `test/example_test.rb` including the content below:
+Here is a very easy example.
+
+First, put `test/addition_test.rb` as below:
 
 ```ruby
 require "easytest"
 
 using Easytest::DSL
 
-test "simple addition" do
-  expect(1 + 1).to_eq 2
-end
-
-test "even number" do
-  expect(2.even?).to_be true
-  expect(1.even?).to_be false
+test "addition" do
+  expect(1 + 2).to_eq 2
 end
 ```
 
@@ -43,37 +40,34 @@ Then, run `easytest`:
 
 ```console
 $ bundle exec easytest
- PASS  test/example_test.rb
+ FAIL  test/addition_test.rb
+  ● addition  (should equal)
 
- Tests:  2 passed, 2 total (1 files)
- Time:   0.00091 seconds
+    Expected: 2
+    Received: 3
+
+    at test/addition_test.rb:6:in `block in <top (required)>'
+
+
+ Tests:  1 failed, 0 passed, 1 total (1 files)
+ Time:   0.00087 seconds
 ```
 
-You should see all tests pass.
+Oops. Let's fix the failure:
 
-Now let's add a failed case as below:
-
-```ruby
-test "nil" do
-  expect("foo").to_be_nil
-end
+```diff
+- expect(1 + 2).to_eq 2
++ expect(1 + 2).to_eq 3
 ```
 
-And then, run it again:
+Then, run it again:
 
 ```console
 $ bundle exec easytest
- FAIL  test/example_test.rb
-  ● nil  (should be `nil`)
+ PASS  test/addition_test.rb
 
-    Expected: nil
-    Received: "foo"
-
-    at test/example_test.rb:15:in `block in <top (required)>'
-
-
- Tests:  1 failed, 2 passed, 3 total (1 files)
- Time:   0.00095 seconds
+ Tests:  1 passed, 1 total (1 files)
+ Time:   0.00077 seconds
 ```
 
-You should see the failure report this time.
+The test passes! 🎉

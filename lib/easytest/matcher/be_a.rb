@@ -6,7 +6,7 @@ module Easytest
       end
 
       def message
-        "be a <class>"
+        "be a"
       end
     end
   end

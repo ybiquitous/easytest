@@ -6,7 +6,7 @@ module Easytest
       end
 
       def message
-        "be same"
+        "same"
       end
     end
   end

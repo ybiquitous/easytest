@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class BeFalse < Base
+    class False < Base
       def initialize(actual:, negate:)
         super(actual: actual, expected: false, negate: negate)
       end
@@ -10,7 +10,7 @@ module Easytest
       end
 
       def message
-        "be false"
+        "false"
       end
     end
   end

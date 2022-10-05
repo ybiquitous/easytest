@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class BeNil < Base
+    class Nil < Base
       def initialize(actual:, negate:)
         super(actual: actual, expected: nil, negate: negate)
       end
@@ -10,7 +10,7 @@ module Easytest
       end
 
       def message
-        "be nil"
+        "nil"
       end
     end
   end

@@ -27,8 +27,8 @@ module Easytest
       end
 
       def build_error_message
-        prefix = negate? ? "should not" : "should"
-        "#{prefix} #{message}"
+        prefix = negate? ? "not " : ""
+        "#{prefix}#{message}"
       end
 
       def raise_match_error

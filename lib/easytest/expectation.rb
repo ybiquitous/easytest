@@ -17,21 +17,22 @@ module Easytest
     def to_eq(expected)
       Matcher::Equal.new(actual: actual, expected: expected, negate: negate).match!
     end
+    alias to_equal to_eq
 
     def to_be(expected)
       Matcher::Be.new(actual: actual, expected: expected, negate: negate).match!
     end
 
     def to_be_nil
-      Matcher::BeNil.new(actual: actual, negate: negate).match!
+      Matcher::Nil.new(actual: actual, negate: negate).match!
     end
 
     def to_be_true
-      Matcher::BeTrue.new(actual: actual, negate: negate).match!
+      Matcher::True.new(actual: actual, negate: negate).match!
     end
 
     def to_be_false
-      Matcher::BeFalse.new(actual: actual, negate: negate).match!
+      Matcher::False.new(actual: actual, negate: negate).match!
     end
 
     def to_be_a(expected)
@@ -39,11 +40,11 @@ module Easytest
     end
 
     def to_be_kind_of(expected)
-      Matcher::BeKindOf.new(actual: actual, expected: expected, negate: negate).match!
+      Matcher::KindOf.new(actual: actual, expected: expected, negate: negate).match!
     end
 
     def to_be_instance_of(expected)
-      Matcher::BeInstanceOf.new(actual: actual, expected: expected, negate: negate).match!
+      Matcher::InstanceOf.new(actual: actual, expected: expected, negate: negate).match!
     end
 
     def to_raise(exception_class)

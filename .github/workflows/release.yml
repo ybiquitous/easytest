@@ -18,8 +18,18 @@ jobs:
       with:
         ruby-version: '3.1'
         bundler-cache: true
-    - name: Release
+    - name: Configure Git
+      run: |
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+    - name: Publish gem
       run: bundle exec rake release
       env:
         GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
         GEM_HOST_OTP_CODE: ${{ github.event.inputs.otp }}
+    - name: Push tag
+      run: git push --follow-tags
+    - name: Create release
+      run: gh release create --draft --generate-notes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

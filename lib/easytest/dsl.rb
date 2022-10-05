@@ -6,8 +6,8 @@ module Easytest
         Easytest.add_case Case.new(name: name, file: file, &block)
       end
 
-      def expect(actual)
-        Expectation.new(actual)
+      def expect(actual = nil, &block)
+        Expectation.new(actual, &block)
       end
     end
   end

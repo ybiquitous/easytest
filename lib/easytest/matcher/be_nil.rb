@@ -5,10 +5,12 @@ module Easytest
         actual.nil?
       end
 
-      def match!
-        unless match?
-          raise UnmatchedError.new(message: "should be `nil`", actual: actual, expected: nil)
-        end
+      def expected
+        nil
+      end
+
+      def message
+        "should be nil"
       end
     end
   end

@@ -12,6 +12,16 @@ module Easytest
       end
 
       def match!
+        unless match?
+          raise UnmatchedError.new(message: message, actual: actual, expected: expected)
+        end
+      end
+
+      def expected
+        raise NotImplementedError
+      end
+
+      def message
         raise NotImplementedError
       end
     end

@@ -12,11 +12,15 @@ module Easytest
         actual == expected
       end
 
-      def match!
-        unless match?
-          raise UnmatchedError.new(message: "should equal", actual: actual, expected: expected)
-        end
+      def message
+        "should equal"
       end
+
+      #  def match!
+      #   unless match?
+      #     raise UnmatchedError.new(message: "should equal", actual: actual, expected: expected)
+      #   end
+      # end
     end
   end
 end

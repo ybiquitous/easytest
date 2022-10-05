@@ -2,9 +2,7 @@
 
 > makes you write tests easily
 
-## Features
-
-*TODO*
+Easytest is a tiny testing framework with a familiar DSL.
 
 ## Installation
 

@@ -4,7 +4,7 @@
 
 > makes you write tests easily
 
-Easytest is a tiny testing framework with a familiar DSL.
+Easytest is a tiny testing framework for Ruby with a familiar DSL.
 
 ## Installation
 

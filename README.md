@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/easytest.svg)](https://badge.fury.io/rb/easytest)
+
 # Easytest
 
 > makes you write tests easily

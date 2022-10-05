@@ -1,16 +1,5 @@
 module Easytest
   class Expectation
-    attr_reader :actual
-    attr_reader :block
-    attr_reader :negate
-    alias negate? negate
-
-    def initialize(actual, negate: false, &block)
-      @actual = actual
-      @block = block
-      @negate = negate
-    end
-
     def not
       self.class.new(actual, negate: true, &block)
     end
@@ -60,6 +49,19 @@ module Easytest
       raise FatalError, "`to_not_raise` requires a block like `expect { ... }.to_not_raise`" unless block
 
       Matcher::NotRaise.new(actual: block).match!
+    end
+
+    private
+
+    attr_reader :actual
+    attr_reader :block
+    attr_reader :negate
+    alias negate? negate
+
+    def initialize(actual, negate: false, &block)
+      @actual = actual
+      @block = block
+      @negate = negate
     end
   end
 end

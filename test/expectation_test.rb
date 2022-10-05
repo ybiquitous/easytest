@@ -74,24 +74,26 @@ def subject_block(&block)
   Easytest::Expectation.new(nil, &block)
 end
 
+raise_thing = -> { raise "foo" }
+noop = -> {}
+
 test "to_raise" do
-  raise_block = -> { raise "foo" }
-  not_raise_block = -> {}
+  expect { subject_block(&raise_thing).to_raise RuntimeError }.to_not_raise
+  expect { subject_block(&noop).to_raise RuntimeError }.to_raise "raise"
 
-  expect { subject_block(&raise_block).to_raise RuntimeError }.to_not_raise
-  expect { subject_block(&not_raise_block).to_raise RuntimeError }.to_raise "raise"
+  expect { subject_block(&raise_thing).to_raise "foo" }.to_not_raise
+  expect { subject_block(&noop).to_raise "bar" }.to_raise "raise"
 
-  expect { subject_block(&raise_block).to_raise "foo" }.to_not_raise
-  expect { subject_block(&not_raise_block).to_raise "bar" }.to_raise "raise"
+  expect { subject_block(&raise_thing).to_raise %r{fo} }.to_not_raise
+  expect { subject_block(&noop).to_raise %r{ba} }.to_raise "raise"
+end
 
-  expect { subject_block(&raise_block).to_raise %r{fo} }.to_not_raise
-  expect { subject_block(&not_raise_block).to_raise %r{ba} }.to_raise "raise"
+test "not.to_raise" do
+  expect { subject_block(&noop).not.to_raise "anything" }
+    .to_raise "`not.to_raise` can cause a false positive, so use `to_not_raise` instead"
 end
 
 test "to_not_raise" do
-  raise_block = -> { raise "foo" }
-  not_raise_block = -> {}
-
-  expect { subject_block(&not_raise_block).to_not_raise }.to_not_raise
-  expect { subject_block(&raise_block).to_not_raise }.to_raise "not raise"
+  expect { subject_block(&noop).to_not_raise }.to_not_raise
+  expect { subject_block(&raise_thing).to_not_raise }.to_raise "not raise"
 end

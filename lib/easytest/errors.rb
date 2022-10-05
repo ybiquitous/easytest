@@ -1,6 +1,8 @@
 module Easytest
   class Error < StandardError; end
 
+  class FatalError < Error; end
+
   class MatchError < Error
     attr_reader :actual
     attr_reader :expected

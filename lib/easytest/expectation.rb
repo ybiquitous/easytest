@@ -3,6 +3,7 @@ module Easytest
     attr_reader :actual
     attr_reader :block
     attr_reader :negate
+    alias negate? negate
 
     def initialize(actual, negate: false, &block)
       @actual = actual
@@ -48,10 +49,15 @@ module Easytest
     end
 
     def to_raise(exception_class)
+      raise FatalError, "`to_raise` requires a block like `expect { ... }.to_raise`" unless block
+      raise FatalError, "`not.to_raise` can cause a false positive, so use `to_not_raise` instead" if negate?
+
       Matcher::Raise.new(actual: block, expected: exception_class, negate: negate).match!
     end
 
     def to_not_raise
+      raise FatalError, "`to_not_raise` requires a block like `expect { ... }.to_not_raise`" unless block
+
       Matcher::NotRaise.new(actual: block).match!
     end
   end

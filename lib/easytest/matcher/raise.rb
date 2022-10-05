@@ -1,12 +1,6 @@
 module Easytest
   module Matcher
     class Raise < Base
-      def initialize(...)
-        super(...)
-
-        raise ArgumentError, "block is required" unless actual
-      end
-
       def match?
         begin
           actual.call

@@ -3,8 +3,6 @@ module Easytest
     class NotRaise < Base
       def initialize(actual:)
         super(actual: actual, expected: nil)
-
-        raise ArgumentError, "block is required" unless actual
       end
 
       def match?

@@ -73,7 +73,7 @@ test "show case results" do
   RUBY
 
   stdout, stderr, status = run("easytest #{tmpfile}")
-  expect(stdout).to_eq <<-MSG
+  expect(stdout).to_include <<-MSG.strip
  FAIL  \e]8;;file://#{tmpfile}\e\\test/#{basename}\e]8;;\e\\
   ✎ todo "todo"
   ⚠ skipped "skipped"
@@ -86,10 +86,10 @@ test "show case results" do
 
 
  Tests:  1 failed, 1 skipped, 1 todo, 1 passed, 4 total (1 files)
- Time:   0.00081 seconds
+ Time:   0.0
 MSG
   expect(stderr).to_eq ""
-  expect(status).to_eq 0
+  expect(status).to_eq 1
 ensure
   File.unlink(tmpfile)
 end

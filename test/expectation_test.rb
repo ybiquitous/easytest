@@ -86,6 +86,10 @@ test "to_raise" do
 
   expect { subject_block(&raise_thing).to_raise %r{fo} }.to_not_raise
   expect { subject_block(&noop).to_raise %r{ba} }.to_raise "raise"
+
+  expect { subject("foo").to_raise "foo" }.to_raise "`to_raise` requires a block like `expect { ... }.to_raise`"
+  expect { subject_block(&noop).not.to_raise "foo" }.to_raise "`not.to_raise` can cause a false positive, so use `to_not_raise` instead"
+  expect { subject_block(&noop).to_raise 123 }.to_raise "`to_raise` requires a Class, String, or Regexp"
 end
 
 test "not.to_raise" do
@@ -96,4 +100,6 @@ end
 test "to_not_raise" do
   expect { subject_block(&noop).to_not_raise }.to_not_raise
   expect { subject_block(&raise_thing).to_not_raise }.to_raise "not raise"
+
+  expect { subject("foo").to_not_raise }.to_raise "`to_not_raise` requires a block like `expect { ... }.to_not_raise`"
 end

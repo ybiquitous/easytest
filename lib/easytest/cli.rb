@@ -33,13 +33,12 @@ module Easytest
       parser = OptionParser.new do |p|
         p.program_name = "easytest"
         p.version = "#{p.program_name} #{Easytest::VERSION}"
-        p.banner = "Usage: #{p.program_name} [options] [...<file or directory>]"
 
-        p.on("--help", "Print help") do
+        p.on "--help" do
           options[:help] = true
         end
 
-        p.on("--version", "Print version") do
+        p.on "--version" do
           options[:version] = true
         end
       end
@@ -48,7 +47,7 @@ module Easytest
         parser.parse!(argv)
 
         if options[:help]
-          puts parser.help
+          puts help(parser)
           return SUCCESS
         end
 
@@ -59,9 +58,20 @@ module Easytest
 
         nil
       rescue OptionParser::ParseError => error
-        $stderr.puts error.message
+        $stderr.puts Rainbow(error.message).red
         FATAL
       end
+    end
+
+    def help(parser)
+      <<~MSG
+        #{Rainbow("USAGE").bright}
+          #{parser.program_name} [options] [...<file, directory, or pattern>]
+
+        #{Rainbow("OPTIONS").bright}
+          --help      Show help
+          --version   Show version
+      MSG
     end
 
     def setup

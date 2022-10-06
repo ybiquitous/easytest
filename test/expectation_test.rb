@@ -70,6 +70,17 @@ test "to_be_instance_of" do
   expect { subject("foo").not.to_be_instance_of String }.to_raise "not instance of"
 end
 
+test "to_include" do
+  expect { subject("foo").to_include "f" }.to_not_raise
+  expect { subject("foo").to_include "b" }.to_raise "include"
+
+  expect { subject(["foo"]).to_include "foo" }.to_not_raise
+  expect { subject(["foo"]).to_include "bar" }.to_raise "include"
+
+  expect { subject("foo").not.to_include "b" }.to_not_raise
+  expect { subject("foo").not.to_include "f" }.to_raise "not include"
+end
+
 def subject_block(&block)
   Easytest::Expectation.new(nil, &block)
 end

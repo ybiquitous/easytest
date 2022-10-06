@@ -21,6 +21,8 @@ module Easytest
     def to_be_false: () -> void
     def to_be_true: () -> void
 
+    def to_include: (untyped expected) -> void
+
     def to_raise: ((Class | String | Regexp) expected) -> void
     def to_not_raise: () -> void
   end

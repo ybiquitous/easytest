@@ -40,7 +40,7 @@ end
 Then, run `easytest`:
 
 ```console
-$ bundle exec easytest
+$ easytest
  FAIL  test/addition_test.rb
   ● addition  (should equal)
 
@@ -64,7 +64,7 @@ Oops. Let's fix the failure:
 Then, run it again:
 
 ```console
-$ bundle exec easytest
+$ easytest
  PASS  test/addition_test.rb
 
  Tests:  1 passed, 1 total (1 files)

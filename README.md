@@ -75,7 +75,7 @@ The test now passes! 🎉
 
 ### Skip
 
-If you want to skip any cases, you can change `test` to `skip`:
+If you want to skip a case, you can change `test` to `skip`:
 
 ```diff
 -test "addition" do
@@ -86,11 +86,8 @@ If you want to skip any cases, you can change `test` to `skip`:
 
 ### To-do
 
-If you want to write to-dos for cases, you can use `test` without a block:
+If you want to write a to-do case, you can use `test` without a block:
 
 ```ruby
-test "#foo method"
-test "#bar method"
-test "#baz method"
-# ...
+test "addition"
 ```

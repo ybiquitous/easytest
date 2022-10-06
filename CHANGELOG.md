@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## 0.4.0
 
 - Add `skip` and `test` without block for todo.
 - Add `to_include` matcher.

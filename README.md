@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/easytest.svg)](https://badge.fury.io/rb/easytest)
+[![CI](https://github.com/ybiquitous/easytest/actions/workflows/ci.yml/badge.svg)](https://github.com/ybiquitous/easytest/actions/workflows/ci.yml)
 
 # Easytest
 

@@ -22,8 +22,8 @@ require_relative "easytest/matcher/instance_of"
 require_relative "easytest/matcher/kind_of"
 require_relative "easytest/matcher/match"
 require_relative "easytest/matcher/nil"
-require_relative "easytest/matcher/not_raise"
 require_relative "easytest/matcher/raise"
+require_relative "easytest/matcher/raise_nothing"
 require_relative "easytest/matcher/true"
 
 module Easytest

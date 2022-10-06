@@ -24,7 +24,7 @@ module Easytest
     def to_match: (untyped expected) -> void
 
     def to_raise: ((Class | String | Regexp) expected) -> void
-    def to_not_raise: () -> void
+    def to_raise_nothing: () -> void
   end
 end
 

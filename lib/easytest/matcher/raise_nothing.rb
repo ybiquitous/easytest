@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class NotRaise < Base
+    class RaiseNothing < Base
       def initialize(actual:)
         super(actual: actual, expected: nil)
       end
@@ -20,7 +20,7 @@ module Easytest
       end
 
       def message
-        "not raise"
+        "raise nothing"
       end
     end
   end

@@ -47,16 +47,16 @@ module Easytest
 
     def to_raise(expected)
       raise FatalError, "`to_raise` requires a block like `expect { ... }.to_raise`" unless block
-      raise FatalError, "`not.to_raise` can cause a false positive, so use `to_not_raise` instead" if negate?
+      raise FatalError, "`not.to_raise` can cause a false positive, so use `to_raise_nothing` instead" if negate?
       raise FatalError, "`to_raise` requires a Class, String, or Regexp" unless [Class, String, Regexp].any? { expected.is_a? _1 }
 
       Matcher::Raise.new(actual: block, expected: expected, negate: negate).match!
     end
 
-    def to_not_raise
-      raise FatalError, "`to_not_raise` requires a block like `expect { ... }.to_not_raise`" unless block
+    def to_raise_nothing
+      raise FatalError, "`to_raise_nothing` requires a block like `expect { ... }.to_raise_nothing`" unless block
 
-      Matcher::NotRaise.new(actual: block).match!
+      Matcher::RaiseNothing.new(actual: block).match!
     end
 
     private

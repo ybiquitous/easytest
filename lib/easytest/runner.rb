@@ -3,12 +3,16 @@ module Easytest
     attr_reader :start_time
     attr_accessor :passed_count
     attr_accessor :failed_count
+    attr_accessor :skipped_count
+    attr_accessor :todo_count
     attr_accessor :file_count
 
     def initialize(start_time: Time.now)
       @start_time = start_time
       @passed_count = 0
       @failed_count = 0
+      @skipped_count = 0
+      @todo_count = 0
       @file_count = 0
     end
 
@@ -16,26 +20,49 @@ module Easytest
       cases_by_file = cases.group_by { |c| c.file }
       cases_by_file.each do |file, cases|
         self.file_count += 1
+
         reports = []
 
         cases.each do |c|
-          passed = c.run
+          result, report = c.run
 
-          if passed
+          case result
+          when :passed
             self.passed_count += 1
-          else
+          when :failed
             self.failed_count += 1
-            reports << c.report.gsub(/^/, "  ")
+          when :skipped
+            self.skipped_count += 1
+          when :todo
+            self.todo_count += 1
+          else
+            raise "Unknown result: #{result.inspect}"
           end
+
+          reports << [result, report] if report
         end
 
         link = Utils.terminal_hyperlink(file)
-        if reports.empty?
+
+        if reports.none? { |result, _| result == :failed }
           puts "#{Rainbow(" PASS ").bright.bg(:green)} #{link}"
         else
           puts "#{Rainbow(" FAIL ").bright.bg(:red)} #{link}"
-          reports.each { |report| puts report ; puts "" }
         end
+
+        reports
+          .sort_by do |result, _|
+            case result
+            when :skipped, :todo
+              0
+            else
+              1
+            end
+          end
+          .each do |result, report|
+            puts report.gsub(/^/, "  ").gsub(/^\s+$/, "")
+            puts "" if result == :failed
+          end
       end
 
       if no_tests?
@@ -65,7 +92,7 @@ module Easytest
     private
 
     def total_count
-      passed_count + failed_count
+      passed_count + failed_count + skipped_count + todo_count
     end
 
     def all_passed?
@@ -81,16 +108,24 @@ module Easytest
     end
 
     def summary
-      summary = ""
+      list = []
 
-      if failed_count == 0
-        summary << Rainbow("#{passed_count} passed").green.bright
-      else
-        summary << Rainbow("#{failed_count} failed").red.bright
-        summary << ", #{Rainbow("#{passed_count} passed").green.bright}"
+      if failed_count > 0
+        list << Rainbow("#{failed_count} failed").red.bright
       end
 
-      summary << ", #{total_count} total #{Rainbow("(#{file_count} files)").dimgray}"
+      if skipped_count > 0
+        list << Rainbow("#{skipped_count} skipped").yellow.bright
+      end
+
+      if todo_count > 0
+        list << Rainbow("#{todo_count} todo").magenta.bright
+      end
+
+      list << Rainbow("#{passed_count} passed").green.bright
+      list << "#{total_count} total #{Rainbow("(#{file_count} files)").dimgray}"
+
+      list.join(", ")
     end
   end
 end

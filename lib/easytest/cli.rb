@@ -66,7 +66,7 @@ module Easytest
     def help(parser)
       <<~MSG
         #{Rainbow("USAGE").bright}
-          #{parser.program_name} [options] [...<file, directory, or pattern>]
+          #{parser.program_name} [options] [<file, directory, or pattern>...]
 
         #{Rainbow("OPTIONS").bright}
           --help      Show help

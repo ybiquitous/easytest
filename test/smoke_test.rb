@@ -15,3 +15,9 @@ test "simple case" do
   expect { 1 / 0 }.to_raise ZeroDivisionError
   expect { 1 / 2 }.to_not_raise
 end
+
+test "add something later"
+
+skip "failed case" do
+  expect(1).to_eq 0
+end

@@ -3,35 +3,34 @@ module Easytest
     attr_reader :name
     attr_reader :file
     attr_reader :block
-    attr_accessor :report
+    attr_reader :skipped
+    alias skipped? skipped
 
-    def initialize(name:, file:, &block)
+    def initialize(name:, file:, skipped: false, &block)
       @name = name
       @file = file
       @block = block
-      @report = nil
+      @skipped = skipped
+    end
+
+    def todo?
+      block.nil?
     end
 
     def run
+      if todo?
+        return [:todo, Reporter.new(name).report_todo]
+      end
+
+      if skipped?
+        return [:skipped, Reporter.new(name).report_skip]
+      end
+
       block.call
-      true
+      [:passed, nil]
     rescue MatchError, FatalError => error
-      loc = find_location(error) or raise
-
-      self.report = Reporter.new(
-        name: name,
-        error: error,
-        file: loc.absolute_path,
-        location: loc.to_s,
-      ).report or raise
-
-      false
-    end
-
-    private
-
-    def find_location(error)
-      error.backtrace_locations.find { |loc| loc.path.end_with?("_test.rb") }
+      report = Reporter.new(name).report_error(error) or raise error
+      [:failed, report]
     end
   end
 end

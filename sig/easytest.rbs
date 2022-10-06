@@ -27,6 +27,11 @@ module Easytest
 end
 
 module Kernel
+  # TODO: Can we avoid `RBS::DuplicatedMethodDefinitionError` "::Kernel#test has duplicated definitions"?
+  # def test: (String name) ?{ () -> void } -> void
+
+  def skip: (String name) { () -> void } -> void
+
   def expect: (untyped actual) -> Easytest::Expectation
             | { () -> void } -> Easytest::Expectation
 end

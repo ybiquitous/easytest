@@ -4,7 +4,6 @@ require "rainbow"
 require_relative "easytest/version"
 
 require_relative "easytest/case"
-require_relative "easytest/cli"
 require_relative "easytest/dsl"
 require_relative "easytest/errors"
 require_relative "easytest/expectation"

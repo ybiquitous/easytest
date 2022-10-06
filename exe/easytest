@@ -3,6 +3,6 @@
 $LOAD_PATH << File.expand_path("../lib", __dir__)
 $LOAD_PATH << File.join(Dir.pwd, "test")
 
-require "easytest"
+require "easytest/cli"
 
 exit Easytest::CLI.new(ARGV).run

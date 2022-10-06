@@ -1,3 +1,5 @@
+require "easytest"
+
 module Easytest
   class CLI
     SUCCESS = 0
@@ -22,7 +24,10 @@ module Easytest
 
     def setup
       Dir.glob(Easytest.test_files_location)
-        .filter { |file| argv.empty? || argv.any? { |pattern| file.include?(pattern) } }
+        .map { |file| File.absolute_path(file) }
+        .filter do |file|
+          argv.empty? || argv.any? { |pattern| file.include?(pattern) }
+        end
         .each { |test_file| load test_file }
     end
   end

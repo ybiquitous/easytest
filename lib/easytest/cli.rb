@@ -71,6 +71,19 @@ module Easytest
         #{Rainbow("OPTIONS").bright}
           --help      Show help
           --version   Show version
+
+        #{Rainbow("EXAMPLES").bright}
+          # Run all tests (test/**/*_test.rb)
+          $ easytest
+
+          # Run only test files
+          $ easytest test/example_test.rb
+
+          # Run only test files in specified directories
+          $ easytest test/example
+
+          # Run only test files that matches specified patterns
+          $ easytest example
       MSG
     end
 

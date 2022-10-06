@@ -71,4 +71,6 @@ $ bundle exec easytest
  Time:   0.00077 seconds
 ```
 
-The test passes! 🎉
+The test now passes! 🎉
+
+For more, try `easytest --help`.

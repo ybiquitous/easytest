@@ -17,6 +17,19 @@ USAGE
 OPTIONS
   --help      Show help
   --version   Show version
+
+EXAMPLES
+  # Run all tests (test/**/*_test.rb)
+  $ easytest
+
+  # Run only test files
+  $ easytest test/example_test.rb
+
+  # Run only test files in specified directories
+  $ easytest test/example
+
+  # Run only test files that matches specified patterns
+  $ easytest example
 MSG
   expect(stderr).to_eq ""
   expect(status).to_eq 0

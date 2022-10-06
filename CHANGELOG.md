@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Add `to_match` matcher.
+
 ## 0.4.0
 
 - Add `skip` and `test` without block for todo.

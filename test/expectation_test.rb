@@ -9,15 +9,24 @@ end
 test "to_eq" do
   expect { subject("foo").to_eq("foo") }.to_not_raise
   expect { subject("foo").to_eq("bar") }.to_raise "equal"
+end
 
+test "not.to_eq" do
   expect { subject("foo").not.to_eq("bar") }.to_not_raise
   expect { subject("foo").not.to_eq("foo") }.to_raise "not equal"
+end
+
+test "to_equal" do
+  expect { subject(1).to_equal(1) }.to_not_raise
+  expect { subject(1).to_equal(0) }.to_raise "equal"
 end
 
 test "to_be" do
   expect { subject(true).to_be(true) }.to_not_raise
   expect { subject(true).to_be(false) }.to_raise "same"
+end
 
+test "not.to_be" do
   expect { subject(true).not.to_be(false) }.to_not_raise
   expect { subject(true).not.to_be(true) }.to_raise "not same"
 end
@@ -25,7 +34,9 @@ end
 test "to_be_nil" do
   expect { subject(nil).to_be_nil }.to_not_raise
   expect { subject(false).to_be_nil }.to_raise "nil"
+end
 
+test "not.to_be_nil" do
   expect { subject(false).not.to_be_nil }.to_not_raise
   expect { subject(nil).not.to_be_nil }.to_raise "not nil"
 end
@@ -33,7 +44,9 @@ end
 test "to_be_true" do
   expect { subject(true).to_be_true }.to_not_raise
   expect { subject(false).to_be_true }.to_raise "true"
+end
 
+test "not.to_be_true" do
   expect { subject(false).not.to_be_true }.to_not_raise
   expect { subject(true).not.to_be_true }.to_raise "not true"
 end
@@ -41,7 +54,9 @@ end
 test "to_be_false" do
   expect { subject(false).to_be_false }.to_not_raise
   expect { subject(true).to_be_false }.to_raise "false"
+end
 
+test "not.to_be_false" do
   expect { subject(true).not.to_be_false }.to_not_raise
   expect { subject(false).not.to_be_false }.to_raise "not false"
 end
@@ -49,7 +64,9 @@ end
 test "to_be_a" do
   expect { subject("foo").to_be_a String }.to_not_raise
   expect { subject("foo").to_be_a Integer }.to_raise "be a"
+end
 
+test "not.to_be_a" do
   expect { subject("foo").not.to_be_a Integer }.to_not_raise
   expect { subject("foo").not.to_be_a String }.to_raise "not be a"
 end
@@ -57,7 +74,9 @@ end
 test "to_be_kind_of" do
   expect { subject("foo").to_be_kind_of String }.to_not_raise
   expect { subject("foo").to_be_kind_of Integer }.to_raise "kind of"
+end
 
+test "not.to_be_kind_of" do
   expect { subject("foo").not.to_be_kind_of Integer }.to_not_raise
   expect { subject("foo").not.to_be_kind_of String }.to_raise "not kind of"
 end
@@ -65,7 +84,9 @@ end
 test "to_be_instance_of" do
   expect { subject("foo").to_be_instance_of String }.to_not_raise
   expect { subject("foo").to_be_instance_of Object }.to_raise "instance of"
+end
 
+test "not.to_be_instance_of" do
   expect { subject("foo").not.to_be_instance_of Object }.to_not_raise
   expect { subject("foo").not.to_be_instance_of String }.to_raise "not instance of"
 end
@@ -76,9 +97,24 @@ test "to_include" do
 
   expect { subject(["foo"]).to_include "foo" }.to_not_raise
   expect { subject(["foo"]).to_include "bar" }.to_raise "include"
+end
 
+test "not.to_include" do
   expect { subject("foo").not.to_include "b" }.to_not_raise
   expect { subject("foo").not.to_include "f" }.to_raise "not include"
+end
+
+test "to_match" do
+  expect { subject("foo").to_match %r{f} }.to_not_raise
+  expect { subject("foo").to_match %r{b} }.to_raise "match"
+
+  expect { subject(/^fo/).to_match "foo" }.to_not_raise
+  expect { subject(/^fo/).to_match "bar" }.to_raise "match"
+end
+
+test "not.to_match" do
+  expect { subject("foo").not.to_match %r{b} }.to_not_raise
+  expect { subject("foo").not.to_match %r{f} }.to_raise "not match"
 end
 
 def subject_block(&block)

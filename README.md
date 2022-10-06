@@ -77,7 +77,7 @@ The test now passes! 🎉
 
 If you want to skip any cases, you can change `test` to `skip`:
 
-```ruby
+```diff
 -test "addition" do
 +skip "addition" do
    expect(1 + 2).to_eq 2

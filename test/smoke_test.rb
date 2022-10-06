@@ -15,7 +15,7 @@ test "simple case" do
   expect({ a: 1 }).to_include :a
   expect(/^fo/).to_match "foo"
   expect { 1 / 0 }.to_raise ZeroDivisionError
-  expect { 1 / 2 }.to_not_raise
+  expect { 1 / 2 }.to_raise_nothing
 end
 
 test "add something later"

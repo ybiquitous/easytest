@@ -39,10 +39,12 @@ module Easytest
       end
 
       if no_tests?
-        puts Rainbow("Oops. No tests found!").red.bright
-        puts ""
-        puts "Write `#{Easytest.test_files_location}` files to include at least one `test` block,"
-        puts "or specify a matching pattern to the `easytest` command."
+        $stderr.puts <<~MSG
+          #{Rainbow("Oops. No tests found!").red.bright}
+
+          #{Rainbow("Put `#{Easytest.test_files_location}` files to include at least one test case.").red}
+          #{Rainbow("Or specify a pattern that matches an existing test file.").red}
+        MSG
         false
       else
         puts ""

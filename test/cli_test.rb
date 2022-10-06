@@ -35,3 +35,15 @@ test "invalid option" do
   expect(stderr).to_eq "invalid option: --foo\n"
   expect(status).to_eq 2
 end
+
+test "no tests" do
+  stdout, stderr, status = run("easytest foo/bar")
+  expect(stdout).to_eq ""
+  expect(stderr).to_eq <<-MSG
+Oops. No tests found!
+
+Put `test/**/*_test.rb` files to include at least one test case.
+Or specify a pattern that matches an existing test file.
+MSG
+  expect(status).to_eq 1
+end

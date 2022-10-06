@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+- Add `skip` and `test` without block for todo.
 - Add `to_include` matcher.
 
 ## 0.3.1

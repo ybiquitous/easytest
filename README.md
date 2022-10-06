@@ -42,7 +42,7 @@ Then, run `easytest`:
 ```console
 $ easytest
  FAIL  test/addition_test.rb
-  ● addition  (should equal)
+  ✕ addition  (should equal)
 
     Expected: 2
     Received: 3
@@ -73,4 +73,21 @@ $ easytest
 
 The test now passes! 🎉
 
-For more, try `easytest --help`.
+### Skip
+
+If you want to skip a case, you can change `test` to `skip`:
+
+```diff
+-test "addition" do
++skip "addition" do
+   expect(1 + 2).to_eq 2
+ end
+```
+
+### To-do
+
+If you want to write a to-do case, you can use `test` without a block:
+
+```ruby
+test "addition"
+```

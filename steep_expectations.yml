@@ -31,3 +31,13 @@
     severity: ERROR
     message: The method cannot be called with a block
     code: Ruby::UnexpectedBlockGiven
+  - range:
+      start:
+        line: 19
+        character: 0
+      end:
+        line: 19
+        character: 26
+    severity: ERROR
+    message: More positional arguments are required
+    code: Ruby::InsufficientPositionalArguments

@@ -1,47 +1,65 @@
 module Easytest
   class Reporter
     attr_reader :name
-    attr_reader :error
-    attr_reader :file
-    attr_reader :location
 
-    def initialize(name:, error:, file:, location:)
+    def initialize(name)
       @name = name
-      @error = error
-      @file = file
-      @location = location
     end
 
-    def report
+    def report_error(error)
       case error
       when MatchError
-        report_match_error
+        report_match_error(error)
       when FatalError
-        report_fatal_error
+        report_fatal_error(error)
       end
+    end
+
+    def report_skip
+      Rainbow("⚠ skipped \"#{name}\"").yellow
+    end
+
+    def report_todo
+      Rainbow("✎ todo \"#{name}\"").magenta
     end
 
     private
 
-    def report_match_error
+    def report_match_error(error)
+      loc = find_location(error)
+
       <<~MSG
-        #{Rainbow("● #{name}").red.bright}  #{Rainbow("(#{error.message})").dimgray}
+        #{Rainbow("✕ #{name}").red.bright}  #{Rainbow("(#{error.message})").dimgray}
 
           #{Rainbow("Expected: #{error.expected.inspect}").green}
           #{Rainbow("Received: #{error.actual.inspect}").red}
 
-          #{Rainbow("# #{location}").dimgray}
+          #{Rainbow(format_location(loc)).dimgray}
       MSG
     end
 
-    def report_fatal_error
+    def report_fatal_error(error)
+      loc = find_location(error)
+
       <<~MSG
-        #{Rainbow("● #{name}").red.bright}
+        #{Rainbow("✕ #{name}").red.bright}
 
           #{Rainbow(error.message).red}
 
-          #{Rainbow("# #{location}").dimgray}
+          #{Rainbow(format_location(loc)).dimgray}
       MSG
+    end
+
+    def find_location(error)
+      location = error.backtrace_locations.find do |loc|
+        loc.path.end_with?("_test.rb")
+      end
+      location or raise "Not found test location from #{error.inspect}"
+    end
+
+    def format_location(location)
+      path = Pathname(location.absolute_path).relative_path_from(Dir.pwd)
+      "# #{path}:#{location.lineno}:in `#{location.label}'"
     end
   end
 end

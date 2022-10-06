@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 
 - Add RBS support.
+- Add CLI help.
 - Fix CLI to aware absolute paths.
 
 ## 0.2.0

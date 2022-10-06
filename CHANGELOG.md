@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Remove polyfill from `.sig` file.
+
 ## 0.3.0
 
 - Add RBS support.

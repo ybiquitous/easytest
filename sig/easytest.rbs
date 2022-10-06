@@ -30,8 +30,3 @@ module Kernel
   def expect: (untyped actual) -> Easytest::Expectation
             | { () -> void } -> Easytest::Expectation
 end
-
-# polyfill
-class Object
-  def using: (Module target) -> void
-end

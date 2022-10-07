@@ -9,12 +9,12 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Easy testing for Ruby."
   spec.description = "Easytest is a tiny testing framework for Ruby with a familiar DSL."
-  spec.homepage = "https://github.com/ybiquitous/easytest"
+  spec.homepage = "https://ybiquitous.github.io/easytest/"
   spec.required_ruby_version = ">= 2.7"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = spec.homepage
-  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/ybiquitous/easytest"
+  spec.metadata["changelog_uri"] = "https://github.com/ybiquitous/easytest/blob/main/CHANGELOG.md"
   spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.files = Dir["CHANGELOG.md", "LICENSE", "README.md", "exe/*", "lib/**/*.rb", "sig/**/*.rbs"]

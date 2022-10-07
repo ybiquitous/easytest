@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Fix `homepage` in gemspec.
+
 ## 0.5.1
 
 - Add RDoc to RBS.

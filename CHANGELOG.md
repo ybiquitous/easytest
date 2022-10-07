@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## 0.6.0
 
 - Add `to_contain_exactly` matcher.
 - Allow `to_raise` to receive the second argument.

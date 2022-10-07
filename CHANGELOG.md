@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Add `to_contain_exactly` matcher.
+
 ## 0.5.2
 
 - Fix `homepage` in gemspec.

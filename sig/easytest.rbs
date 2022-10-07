@@ -43,6 +43,9 @@ module Easytest
     # Expect to match the given object.
     def to_match: (untyped expected) -> void
 
+    # Expect to contain all the given items regardless of order.
+    def to_contain_exactly: (*untyped expected_items) -> void
+
     # Expect to raise the given exception or an exception with the given message.
     def to_raise: ((Class | String | Regexp) expected) -> void
 

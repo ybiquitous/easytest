@@ -2,8 +2,11 @@ name: CI
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   test:
@@ -11,14 +14,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['2.7', '3.0', '3.1', 'head']
+        ruby: ["2.7", "3.0", "3.1", "head"]
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Test
-      run: bundle exec rake
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Test
+        run: bundle exec rake

@@ -28,7 +28,7 @@ jobs:
         with:
           ruby-version: "3.1"
           bundler-cache: true
-      - name: Generate HTML
+      - name: Generate HTML documents
         run: bundle exec rake doc
       - name: Set up Pages
         uses: actions/configure-pages@v2

@@ -2,9 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## 0.5.1
 
 - Add RDoc to RBS.
+- Publish the official website.
 
 ## 0.5.0
 

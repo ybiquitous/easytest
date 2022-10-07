@@ -75,19 +75,32 @@ The test now passes! 🎉
 
 ### Skip
 
-If you want to skip a case, you can change `test` to `skip`:
+If you want to skip any cases, you can change `test` to `skip`:
 
 ```diff
 -test "addition" do
 +skip "addition" do
-   expect(1 + 2).to_eq 2
- end
 ```
+
+Skipped cases will be reported as "skipped".
+
+### Only
+
+If you want to run only any cases, you can use `test` to `only`:
+
+```diff
+-test "addition" do
++only "addition" do
+```
+
+Only cases with `only` will be run, and other cases will be skipped.
 
 ### To-do
 
-If you want to write a to-do case, you can use `test` without a block:
+If you want to write to-do cases, you can use `test` without a block:
 
 ```ruby
 test "addition"
 ```
+
+To-do cases will be reported as "todo".

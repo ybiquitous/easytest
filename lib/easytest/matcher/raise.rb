@@ -1,13 +1,20 @@
 module Easytest
   module Matcher
     class Raise < Base
+      attr_reader :with_message
+
+      def initialize(**kwargs)
+        @with_message = kwargs.delete(:with_message)
+        super(**kwargs)
+      end
+
       def match?
         begin
           actual.call
           false
         rescue => error
           @raised_error = error
-          match_error?(actual: error, expected: expected)
+          match_error?(error)
         end
       end
 
@@ -21,14 +28,19 @@ module Easytest
 
       private
 
-      def match_error?(actual:, expected:)
+      def match_error?(error)
         case expected
         when Class
-          actual.class == expected
+          matched = error.class == expected
+          if with_message
+            matched && error.message.match?(with_message)
+          else
+            matched
+          end
         when String
-          actual.message == expected
+          error.message == expected
         when Regexp
-          actual.message.match? expected
+          error.message.match? expected
         else
           false
         end

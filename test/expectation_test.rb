@@ -149,6 +149,14 @@ test "to_raise" do
   expect { subject_block(&noop).to_raise 123 }.to_raise "`to_raise` requires a Class, String, or Regexp"
 end
 
+test "to_raise with message" do
+  expect { subject_block(&raise_thing).to_raise RuntimeError, "foo" }.to_raise_nothing
+  expect { subject_block(&raise_thing).to_raise RuntimeError, "bar" }.to_raise "raise"
+
+  expect { subject_block(&raise_thing).to_raise RuntimeError, /^fo/ }.to_raise_nothing
+  expect { subject_block(&raise_thing).to_raise RuntimeError, /^ba/ }.to_raise "raise"
+end
+
 test "not.to_raise" do
   expect { subject_block(&noop).not.to_raise "anything" }
     .to_raise "`not.to_raise` can cause a false positive, so use `to_raise_nothing` instead"

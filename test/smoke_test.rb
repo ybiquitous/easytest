@@ -23,3 +23,9 @@ test "add something later"
 skip "failed case" do
   expect(1).to_eq 0
 end
+
+if false # rubocop:disable Lint/LiteralAsCondition -- For type-checking
+  only "this case" do
+    expect(1.0).to_be_a Float
+  end
+end

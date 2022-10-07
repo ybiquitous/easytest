@@ -34,6 +34,8 @@ module Kernel
 
   def skip: (String name) { () -> void } -> void
 
+  def only: (String name) { () -> void } -> void
+
   def expect: (untyped actual) -> Easytest::Expectation
             | { () -> void } -> Easytest::Expectation
 end

@@ -4,27 +4,30 @@ module Easytest
     attr_reader :file
     attr_reader :block
     attr_reader :skipped
-    alias skipped? skipped
+    attr_reader :only
 
-    def initialize(name:, file:, skipped: false, &block)
+    alias skipped? skipped
+    alias only? only
+
+    def initialize(name:, file:, skipped: false, only: false, &block)
       @name = name
       @file = file
       @block = block
       @skipped = skipped
+      @only = only
     end
 
     def todo?
       block.nil?
     end
 
-    def run
-      if todo?
-        return [:todo, Reporter.new(name).report_todo]
-      end
+    def skip!
+      @skipped = true
+    end
 
-      if skipped?
-        return [:skipped, Reporter.new(name).report_skip]
-      end
+    def run
+      return [:todo, Reporter.new(name).report_todo] if todo?
+      return [:skipped, Reporter.new(name).report_skip] if skipped?
 
       block.call
       [:passed, nil]

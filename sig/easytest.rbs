@@ -47,7 +47,8 @@ module Easytest
     def to_contain_exactly: (*untyped expected_items) -> void
 
     # Expect to raise the given exception or an exception with the given message.
-    def to_raise: ((Class | String | Regexp) expected) -> void
+    def to_raise: (Class expected, ?(String | Regexp) with_message) -> void
+                | ((String | Regexp) expected) -> void
 
     # Expect to raise nothing.
     def to_raise_nothing: () -> void

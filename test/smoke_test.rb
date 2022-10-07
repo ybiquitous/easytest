@@ -16,6 +16,7 @@ test "simple case" do
   expect(/^fo/).to_match "foo"
   expect(1..4).to_contain_exactly 1, 3, 4, 2
   expect { 1 / 0 }.to_raise ZeroDivisionError
+  expect { 1 / 0 }.to_raise ZeroDivisionError, "divided"
   expect { 1 / 2 }.to_raise_nothing
 end
 

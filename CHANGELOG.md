@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 - [Breaking] Rename `to_not_raise` to `to_raise_nothing`.
 - Add `to_match` matcher.
+- Add `only` to run only any cases.
 
 ## 0.4.0
 

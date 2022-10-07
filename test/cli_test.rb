@@ -61,20 +61,30 @@ MSG
   expect(status).to_eq 1
 end
 
-test "show case results" do
+def run_with_code(code)
   basename = "#{Time.now.to_i}_cli_test.rb"
   tmpfile = File.join(__dir__, basename)
-  File.write(tmpfile, <<~RUBY)
-    require "easytest" ; using Easytest::DSL
-    test "passed" do expect(1).to_eq 1 end
-    test "failed" do expect(1).to_eq 0 end
-    test "todo"
-    skip "skipped" do end
-  RUBY
+  File.write(tmpfile, code)
+  result = run("easytest #{tmpfile}")
+  result << tmpfile
+ensure
+  File.unlink(tmpfile)
+end
 
-  stdout, stderr, status = run("easytest #{tmpfile}")
+test "show case results" do
+  code = <<-RUBY
+require "easytest"
+using Easytest::DSL
+test "passed" do expect(1).to_eq 1 end
+test "failed" do expect(1).to_eq 0 end
+test "todo"
+skip "skipped" do end
+RUBY
+
+  stdout, stderr, status, file = run_with_code(code)
+  basename = File.basename(file)
   expect(stdout).to_include <<-MSG.strip
- FAIL  \e]8;;file://#{tmpfile}\e\\test/#{basename}\e]8;;\e\\
+ FAIL  \e]8;;file://#{file}\e\\test/#{basename}\e]8;;\e\\
   ✎ todo "todo"
   ⚠ skipped "skipped"
   ✕ failed  (equal)
@@ -82,14 +92,34 @@ test "show case results" do
     Expected: 0
     Received: 1
 
-    # test/#{basename}:3:in `block in <top (required)>'
+    # test/#{basename}:4:in `block in <top (required)>'
 
 
- Tests:  1 failed, 1 skipped, 1 todo, 1 passed, 4 total (1 files)
- Time:   0.0
+ Tests:  1 failed, 1 skipped, 1 todo, 1 passed, 4 total (1 file)
 MSG
   expect(stderr).to_eq ""
   expect(status).to_eq 1
-ensure
-  File.unlink(tmpfile)
+end
+
+test "run only case" do
+  code = <<-RUBY
+require "easytest"
+using Easytest::DSL
+only "case 1" do end
+only "case 2" do end
+test "should not run this case" do raise end
+skip "skipped" do raise end
+RUBY
+
+  stdout, stderr, status, file = run_with_code(code)
+  basename = File.basename(file)
+  expect(stdout).to_include <<-MSG
+ PASS  \e]8;;file://#{file}\e\\test/#{basename}\e]8;;\e\\
+  ⚠ skipped "should not run this case"
+  ⚠ skipped "skipped"
+
+ Tests:  2 skipped, 2 passed, 4 total (1 file)
+MSG
+  expect(stderr).to_eq ""
+  expect(status).to_eq 0
 end

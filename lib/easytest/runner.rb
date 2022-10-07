@@ -17,13 +17,19 @@ module Easytest
     end
 
     def run
-      cases_by_file = cases.group_by { |c| c.file }
-      cases_by_file.each do |file, cases|
+      include_only_case = cases.any?(&:only?)
+
+      cases.group_by(&:file).each do |file, cases_per_file|
         self.file_count += 1
 
         reports = []
 
-        cases.each do |c|
+
+        cases_per_file.each do |c|
+          if include_only_case && !c.only?
+            c.skip!
+          end
+
           result, report = c.run
 
           case result
@@ -123,7 +129,9 @@ module Easytest
       end
 
       list << Rainbow("#{passed_count} passed").green.bright
-      list << "#{total_count} total #{Rainbow("(#{file_count} files)").dimgray}"
+
+      files_text = "#{file_count} #{Utils.pluralize("file", file_count)}"
+      list << "#{total_count} total #{Rainbow("(#{files_text})").dimgray}"
 
       list.join(", ")
     end

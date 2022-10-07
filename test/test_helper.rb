@@ -1,1 +1,2 @@
 require "easytest"
+require "debug"

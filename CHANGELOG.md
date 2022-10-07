@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Add RDoc to RBS.
+
 ## 0.5.0
 
 - **[Breaking]** Rename `to_not_raise` to `to_raise_nothing`.

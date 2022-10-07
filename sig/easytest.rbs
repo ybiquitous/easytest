@@ -1,29 +1,52 @@
+# A easy testing framework.
 module Easytest
+  # The Easytest version.
   VERSION: String
 
+  # Define methods for the Easytest DSL.
   module DSL
   end
 
+  # Define methods for the Easytest DSL.
   class Expectation
+    # Negate an expectation.
     def not: () -> instance
 
+    # Expect to equal the given object.
     def to_eq: (untyped expected) -> void
     alias to_equal to_eq
 
+    # Expect to be the same as the given object.
     def to_be: (untyped expected) -> untyped
+
+    # Expect to be `nil`. Same as `to_be(nil)`.
     def to_be_nil: () -> void
+
+    # Expect to be `false`. Same as `to_be(false)`.
     def to_be_false: () -> void
+
+    # Expect to be `true`. Same as `to_be(true)`.
     def to_be_true: () -> void
 
-    def to_be_a: (Class expected) -> void
-    def to_be_kind_of: (Class expected) -> void
-    def to_be_instance_of: (Class expected) -> void
+    # Expect to be an instance of the given class (module) or its subclasses.
+    def to_be_a: (Module expected) -> void
 
+    # Expect to be an instance of the given class (module) or its subclasses.
+    def to_be_kind_of: (Module expected) -> void
+
+    # Expect to be an instance of the given class (module).
+    def to_be_instance_of: (Module expected) -> void
+
+    # Expect to include the given object.
     def to_include: (untyped expected) -> void
 
+    # Expect to match the given object.
     def to_match: (untyped expected) -> void
 
+    # Expect to raise the given exception or an exception with the given message.
     def to_raise: ((Class | String | Regexp) expected) -> void
+
+    # Expect to raise nothing.
     def to_raise_nothing: () -> void
   end
 end
@@ -32,10 +55,13 @@ module Kernel
   # TODO: Can we avoid `RBS::DuplicatedMethodDefinitionError` "::Kernel#test has duplicated definitions"?
   # def test: (String name) ?{ () -> void } -> void
 
+  # Skip the given test case.
   def skip: (String name) { () -> void } -> void
 
+  # Run only the given test case.
   def only: (String name) { () -> void } -> void
 
+  # Expect the given object or block to satisfy some criterion.
   def expect: (untyped actual) -> Easytest::Expectation
             | { () -> void } -> Easytest::Expectation
 end

@@ -9,13 +9,13 @@ Easytest is a tiny testing framework for Ruby with a familiar DSL.
 
 ## Installation
 
-via Bundler:
+Add this line to your `Gemfile` for Bundler:
 
-```shell
-bundle add easytest
+```ruby
+gem "easytest"
 ```
 
-via gem:
+Or install it via `gem`:
 
 ```shell
 gem install easytest

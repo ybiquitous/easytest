@@ -10,7 +10,12 @@ end
 
 desc "Run type-check"
 task :typecheck do
-  sh "bin/steep check --with-expectations"
+  sh "steep check --with-expectations"
 end
 
-task default: %i[test rubocop typecheck]
+desc "Generate documents"
+task :doc do
+  sh "rdoc sig"
+end
+
+task default: %i[test rubocop typecheck doc]

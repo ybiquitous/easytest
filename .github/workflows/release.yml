@@ -7,6 +7,10 @@ on:
         description: "One-time password for RubyGems.org"
         required: true
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   release:
     runs-on: ubuntu-latest

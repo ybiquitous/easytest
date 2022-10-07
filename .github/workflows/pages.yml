@@ -29,7 +29,7 @@ jobs:
           ruby-version: "3.1"
           bundler-cache: true
       - name: Generate HTML documents
-        run: bundle exec rake doc
+        run: bundle exec rake rdoc
       - name: Set up Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact

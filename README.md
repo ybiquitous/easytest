@@ -78,8 +78,8 @@ The test now passes! 🎉
 If you want to skip any cases, you can change `test` to `skip`:
 
 ```diff
--test "addition" do
-+skip "addition" do
+- test "addition" do
++ skip "addition" do
 ```
 
 Skipped cases will be reported as "skipped".
@@ -89,8 +89,8 @@ Skipped cases will be reported as "skipped".
 If you want to run only any cases, you can use `test` to `only`:
 
 ```diff
--test "addition" do
-+only "addition" do
+- test "addition" do
++ only "addition" do
 ```
 
 Only cases with `only` will be run, and other cases will be skipped.

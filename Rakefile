@@ -1,7 +1,14 @@
 require "bundler/gem_tasks"
 require "rubocop/rake_task"
+require "rdoc/task"
 
 RuboCop::RakeTask.new
+
+RDoc::Task.new do |rdoc|
+  rdoc.main = "README.md"
+  rdoc.rdoc_dir = "doc/"
+  rdoc.rdoc_files.include("README.md", "sig")
+end
 
 desc "Run test"
 task :test do
@@ -13,9 +20,4 @@ task :typecheck do
   sh "steep check --with-expectations"
 end
 
-desc "Generate documents"
-task :doc do
-  sh "rdoc sig"
-end
-
-task default: %i[test rubocop typecheck doc]
+task default: %i[test rubocop typecheck rdoc]

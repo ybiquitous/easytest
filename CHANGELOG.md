@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## 0.5.0
 
 - [Breaking] Rename `to_not_raise` to `to_raise_nothing`.
 - Add `to_match` matcher.

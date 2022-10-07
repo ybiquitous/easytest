@@ -21,6 +21,10 @@ Or install it via `gem`:
 gem install easytest
 ```
 
+## Documentation
+
+You can read more about Easytest on the [official website](https://ybiquitous.github.io/easytest/).
+
 ## Usage
 
 Here is a very easy example.

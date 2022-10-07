@@ -11,9 +11,6 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
-permissions:
-  contents: write
-
 jobs:
   release:
     uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@main

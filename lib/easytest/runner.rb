@@ -24,7 +24,6 @@ module Easytest
 
         reports = []
 
-
         cases_per_file.each do |c|
           if include_only_case && !c.only?
             c.skip!
@@ -56,19 +55,7 @@ module Easytest
           puts "#{Rainbow(" FAIL ").bright.bg(:red)} #{link}"
         end
 
-        reports
-          .sort_by do |result, _|
-            case result
-            when :skipped, :todo
-              0
-            else
-              1
-            end
-          end
-          .each do |result, report|
-            puts report.gsub(/^/, "  ").gsub(/^\s+$/, "")
-            puts "" if result == :failed
-          end
+        print_reports(reports)
       end
 
       if no_tests?
@@ -107,6 +94,20 @@ module Easytest
 
     def no_tests?
       total_count == 0
+    end
+
+    def print_reports(reports)
+      unexecuted = [:skipped, :todo]
+      indent = "  "
+
+      reports.each do |result, report|
+        puts Utils.indent_text(report, indent) if unexecuted.include?(result)
+      end
+
+      reports.each do |result, report|
+        puts Utils.indent_text(report, indent) unless unexecuted.include?(result)
+        puts "" if result == :failed
+      end
     end
 
     def elapsed_time

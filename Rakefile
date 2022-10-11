@@ -21,6 +21,6 @@ task :typecheck do
 end
 
 desc "Run lint"
-task lint: %i[rubocop typecheck]
+task lint: %i[rubocop typecheck rdoc]
 
-task default: %i[lint test rdoc]
+task default: %i[lint test]

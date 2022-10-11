@@ -26,17 +26,17 @@
         line: 5
         character: 19
       end:
-        line: 21
+        line: 22
         character: 3
     severity: ERROR
     message: The method cannot be called with a block
     code: Ruby::UnexpectedBlockGiven
   - range:
       start:
-        line: 23
+        line: 24
         character: 0
       end:
-        line: 23
+        line: 24
         character: 26
     severity: ERROR
     message: More positional arguments are required

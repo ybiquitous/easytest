@@ -37,6 +37,9 @@ module Easytest
     # Expect to be an instance of the given class (module).
     def to_be_instance_of: (Module expected) -> void
 
+    # Expect to be empty.
+    def to_be_empty: () -> void
+
     # Expect to include the given object.
     def to_include: (untyped expected) -> void
 

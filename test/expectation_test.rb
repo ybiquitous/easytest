@@ -91,6 +91,16 @@ test "not.to_be_instance_of" do
   expect { subject("foo").not.to_be_instance_of String }.to_raise "not instance of"
 end
 
+test "to_be_empty" do
+  expect { subject([]).to_be_empty }.to_raise_nothing
+  expect { subject([1]).to_be_empty }.to_raise "empty"
+end
+
+test "not.to_be_empty" do
+  expect { subject({ a: 1 }).not.to_be_empty }.to_raise_nothing
+  expect { subject({}).not.to_be_empty }.to_raise "not empty"
+end
+
 test "to_include" do
   expect { subject("foo").to_include "f" }.to_raise_nothing
   expect { subject("foo").to_include "b" }.to_raise "include"

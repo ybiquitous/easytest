@@ -20,4 +20,7 @@ task :typecheck do
   sh "steep check --with-expectations"
 end
 
-task default: %i[test rubocop typecheck rdoc]
+desc "Run lint"
+task lint: %i[rubocop typecheck]
+
+task default: %i[lint test rdoc]

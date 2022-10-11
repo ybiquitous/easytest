@@ -105,9 +105,9 @@ test "run only case" do
   code = <<-RUBY
 require "easytest"
 using Easytest::DSL
+test "should not run this case" do raise end
 only "case 1" do end
 only "case 2" do end
-test "should not run this case" do raise end
 skip "skipped" do raise end
 RUBY
 

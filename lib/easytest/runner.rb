@@ -19,7 +19,7 @@ module Easytest
     def run
       include_only_case = cases.any?(&:only?)
 
-      cases.group_by(&:file).each do |file, cases_per_file|
+      cases.group_by(&:file).sort_by(&:first).each do |file, cases_per_file|
         self.file_count += 1
 
         reports = []

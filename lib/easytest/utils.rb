@@ -20,5 +20,9 @@ module Easytest
     def pluralize(singular, count)
       count == 1 ? singular : "#{singular}s"
     end
+
+    def indent_text(text, indent_string)
+      text.gsub(/^(.+)/, "#{indent_string}\\1")
+    end
   end
 end

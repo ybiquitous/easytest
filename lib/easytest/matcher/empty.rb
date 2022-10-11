@@ -1,12 +1,12 @@
 module Easytest
   module Matcher
-    class False < Base
+    class Empty < Base
       def match?
-        actual == expected
+        actual.empty?
       end
 
       def message
-        "false"
+        "empty"
       end
     end
   end

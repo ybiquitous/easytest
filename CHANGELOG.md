@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+- Add `to_be_empty` matcher.
 - Avoid unstable `Enumerable#sort_by` method.
 
 ## 0.6.0

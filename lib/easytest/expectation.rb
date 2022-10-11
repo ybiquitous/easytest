@@ -14,15 +14,15 @@ module Easytest
     end
 
     def to_be_nil
-      Matcher::Nil.new(actual: actual, negate: negate).match!
+      Matcher::Nil.new(actual: actual, expected: nil, negate: negate).match!
     end
 
     def to_be_true
-      Matcher::True.new(actual: actual, negate: negate).match!
+      Matcher::True.new(actual: actual, expected: true, negate: negate).match!
     end
 
     def to_be_false
-      Matcher::False.new(actual: actual, negate: negate).match!
+      Matcher::False.new(actual: actual, expected: false, negate: negate).match!
     end
 
     def to_be_a(expected)
@@ -35,6 +35,10 @@ module Easytest
 
     def to_be_instance_of(expected)
       Matcher::InstanceOf.new(actual: actual, expected: expected, negate: negate).match!
+    end
+
+    def to_be_empty
+      Matcher::Empty.new(actual: actual, expected: nil, negate: negate).match!
     end
 
     def to_include(expected)

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Avoid unstable `Enumerable#sort_by` method.
+
 ## 0.6.0
 
 - Add `to_contain_exactly` matcher.

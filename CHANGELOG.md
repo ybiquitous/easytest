@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 
 - Add `to_have_attributes` matcher.
+- Add `to_satisfy` matcher.
 
 ## 0.7.0
 

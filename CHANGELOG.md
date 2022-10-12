@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## 0.8.0
 
 - Add `before` and `after` hooks.
 - Add `to_have_attributes` matcher.

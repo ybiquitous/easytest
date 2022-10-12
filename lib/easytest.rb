@@ -27,6 +27,7 @@ require_relative "easytest/matcher/match"
 require_relative "easytest/matcher/nil"
 require_relative "easytest/matcher/raise"
 require_relative "easytest/matcher/raise_nothing"
+require_relative "easytest/matcher/satisfy"
 require_relative "easytest/matcher/true"
 
 module Easytest

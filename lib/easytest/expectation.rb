@@ -57,6 +57,10 @@ module Easytest
       Matcher::HaveAttributes.new(actual: actual, expected: expected, negate: negate).match!
     end
 
+    def to_satisfy(&expected)
+      Matcher::Satisfy.new(actual: actual, expected: expected, negate: negate).match!
+    end
+
     def to_raise(expected, with_message = nil)
       raise FatalError, "`to_raise` requires a block like `expect { ... }.to_raise`" unless block
       raise FatalError, "`not.to_raise` can cause a false positive, so use `to_raise_nothing` instead" if negate?

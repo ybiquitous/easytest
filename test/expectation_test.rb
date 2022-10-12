@@ -147,6 +147,19 @@ test "not.to_have_attributes" do
   expect { subject("あ").not.to_have_attributes size: 1 }.to_raise "not have attributes"
 end
 
+test "to_satisfy" do
+  expect { subject(2).to_satisfy { |n| n > 1 } }.to_raise_nothing
+  expect { subject(2).to_satisfy { |n| n > 2 } }.to_raise "satisfy"
+
+  expect { subject(2).to_satisfy(&:positive?) }.to_raise_nothing
+  expect { subject(2).to_satisfy(&:negative?) }.to_raise "satisfy"
+end
+
+test "not.to_satisfy" do
+  expect { subject(2).not.to_satisfy { |n| n > 2 } }.to_raise_nothing
+  expect { subject(2).not.to_satisfy { |n| n > 1 } }.to_raise "not satisfy"
+end
+
 def subject_block(&block)
   Easytest::Expectation.new(nil, &block)
 end

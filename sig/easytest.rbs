@@ -1,4 +1,4 @@
-# A easy testing framework.
+# An easy testing framework.
 module Easytest
   # The Easytest version.
   VERSION: String
@@ -7,7 +7,7 @@ module Easytest
   module DSL
   end
 
-  # Define methods for the Easytest DSL.
+  # An expectation in test cases.
   class Expectation
     # Negate an expectation.
     def not: () -> instance
@@ -62,11 +62,23 @@ module Easytest
     # Expect to raise nothing.
     def to_raise_nothing: () -> void
   end
+
+  # A test case.
+  class Case
+    # Return a test case name.
+    def name: () -> String
+  end
 end
 
 module Kernel
   # TODO: Can we avoid `RBS::DuplicatedMethodDefinitionError` "::Kernel#test has duplicated definitions"?
   # def test: (String name) ?{ () -> void } -> void
+
+  # Run the given block before each test case.
+  def before: () { (Easytest::Case case) -> void } -> void
+
+  # Run the given block after each test case.
+  def after: () { (Easytest::Case case) -> void } -> void
 
   # Skip the given test case.
   def skip: (String name) { () -> void } -> void

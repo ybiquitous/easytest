@@ -3,23 +3,25 @@ module Easytest
     refine Kernel do
       def test(name, &block)
         Utils.raise_if_no_test_name(name, method: "test")
+        Easytest.add_case Case.new(name: name, &block)
+      end
 
-        file = caller_locations(1, 1).first.absolute_path
-        Easytest.add_case Case.new(name: name, file: file, &block)
+      def before(&block)
+        Easytest.add_hook Hook.new(type: :before, &block)
+      end
+
+      def after(&block)
+        Easytest.add_hook Hook.new(type: :after, &block)
       end
 
       def skip(name, &block)
         Utils.raise_if_no_test_name(name, method: "skip")
-
-        file = caller_locations(1, 1).first.absolute_path
-        Easytest.add_case Case.new(name: name, file: file, skipped: true, &block)
+        Easytest.add_case Case.new(name: name, skipped: true, &block)
       end
 
       def only(name, &block)
         Utils.raise_if_no_test_name(name, method: "only")
-
-        file = caller_locations(1, 1).first.absolute_path
-        Easytest.add_case Case.new(name: name, file: file, only: true, &block)
+        Easytest.add_case Case.new(name: name, only: true, &block)
       end
 
       def expect(actual = nil, &block)

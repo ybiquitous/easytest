@@ -77,6 +77,24 @@ $ easytest
 
 The test now passes! 🎉
 
+### Hooks
+
+You can add hooks called `before` and `after` to each test case:
+
+```ruby
+before do
+  # set up something...
+end
+
+after do
+  # clean up something...
+end
+
+test "something" do
+  # test something...
+end
+```
+
 ### Skip
 
 If you want to skip any cases, you can change `test` to `skip`:

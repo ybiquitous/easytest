@@ -137,6 +137,16 @@ test "not.to_contain_exactly" do
   expect { subject(1..3).not.to_contain_exactly 3, 2, 1 }.to_raise "not contain exactly"
 end
 
+test "to_have_attributes" do
+  expect { subject("あ").to_have_attributes size: 1, bytesize: 3 }.to_raise_nothing
+  expect { subject("あ").to_have_attributes size: 1, bytesize: 2 }.to_raise "have attributes"
+end
+
+test "not.to_have_attributes" do
+  expect { subject("あ").not.to_have_attributes size: 2 }.to_raise_nothing
+  expect { subject("あ").not.to_have_attributes size: 1 }.to_raise "not have attributes"
+end
+
 def subject_block(&block)
   Easytest::Expectation.new(nil, &block)
 end

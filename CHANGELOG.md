@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Add `to_have_attributes` matcher.
+
 ## 0.7.0
 
 - Add `to_be_empty` matcher.

@@ -49,8 +49,12 @@ module Easytest
       Matcher::Match.new(actual: actual, expected: expected, negate: negate).match!
     end
 
-    def to_contain_exactly(*expected_items)
-      Matcher::ContainExactly.new(actual: actual, expected: expected_items, negate: negate).match!
+    def to_contain_exactly(*expected)
+      Matcher::ContainExactly.new(actual: actual, expected: expected, negate: negate).match!
+    end
+
+    def to_have_attributes(**expected)
+      Matcher::HaveAttributes.new(actual: actual, expected: expected, negate: negate).match!
     end
 
     def to_raise(expected, with_message = nil)

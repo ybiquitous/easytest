@@ -1,5 +1,6 @@
 require "test_helper"
 require "open3"
+require "pathname"
 
 using Easytest::DSL
 
@@ -61,30 +62,20 @@ MSG
   expect(status).to_eq 1
 end
 
-def run_with_code(code)
-  basename = "#{Time.now.to_i}_cli_test.rb"
-  tmpfile = File.join(__dir__, basename)
-  File.write(tmpfile, code)
+def run_with(file:)
+  code = Pathname(__dir__).join(file).read
+  tmpfile = Pathname(__dir__).join("#{Time.now.to_i}_cli_test.rb")
+  tmpfile.write(code)
   result = run("easytest #{tmpfile}")
-  result << tmpfile
+  [*result, tmpfile]
 ensure
-  File.unlink(tmpfile)
+  tmpfile.delete
 end
 
 test "show case results" do
-  code = <<-RUBY
-require "easytest"
-using Easytest::DSL
-test "passed" do expect(1).to_eq 1 end
-test "failed" do expect(1).to_eq 0 end
-test "todo"
-skip "skipped" do end
-RUBY
-
-  stdout, stderr, status, file = run_with_code(code)
-  basename = File.basename(file)
+  stdout, stderr, status, file = run_with(file: "fixtures/show_case_results.rb")
   expect(stdout).to_include <<-MSG.strip
- FAIL  \e]8;;file://#{file}\e\\test/#{basename}\e]8;;\e\\
+ FAIL  \e]8;;file://#{file}\e\\test/#{file.basename}\e]8;;\e\\
   ✎ todo "todo"
   ⚠ skipped "skipped"
   ✕ failed  (equal)
@@ -92,7 +83,7 @@ RUBY
     Expected: 0
     Received: 1
 
-    # test/#{basename}:4:in `block in <top (required)>'
+    # test/#{file.basename}:9:in `block in <top (required)>'
 
 
  Tests:  1 failed, 1 skipped, 1 todo, 1 passed, 4 total (1 file)
@@ -102,19 +93,9 @@ MSG
 end
 
 test "run only case" do
-  code = <<-RUBY
-require "easytest"
-using Easytest::DSL
-test "should not run this case" do raise end
-only "case 1" do end
-only "case 2" do end
-skip "skipped" do raise end
-RUBY
-
-  stdout, stderr, status, file = run_with_code(code)
-  basename = File.basename(file)
+  stdout, stderr, status, file = run_with(file: "fixtures/run_only_case.rb")
   expect(stdout).to_include <<-MSG
- PASS  \e]8;;file://#{file}\e\\test/#{basename}\e]8;;\e\\
+ PASS  \e]8;;file://#{file}\e\\test/#{file.basename}\e]8;;\e\\
   ⚠ skipped "should not run this case"
   ⚠ skipped "skipped"
 
@@ -122,4 +103,22 @@ RUBY
 MSG
   expect(stderr).to_eq ""
   expect(status).to_eq 0
+end
+
+test "hooks" do
+  stdout, stderr, status, file = run_with(file: "fixtures/hooks.rb")
+  expect(stdout).to_include <<-MSG
+ FAIL  \e]8;;file://#{file}\e\\test/#{file.basename}\e]8;;\e\\
+  ✕ second  (equal)
+
+    Expected: 2
+    Received: 1
+
+    # test/#{file.basename}:15:in `block in <top (required)>'
+
+
+ Tests:  1 failed, 1 passed, 2 total (1 file)
+MSG
+  expect(stderr).to_eq ""
+  expect(status).to_eq 1
 end

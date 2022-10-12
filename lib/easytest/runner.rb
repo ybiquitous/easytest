@@ -18,9 +18,14 @@ module Easytest
 
     def run
       include_only_case = cases.any?(&:only?)
+      hooks_by_file = hooks.group_by(&:file)
 
       cases.group_by(&:file).each do |file, cases_per_file|
         self.file_count += 1
+
+        hooks = hooks_by_file.fetch(file, [])
+        before_hooks = hooks.filter(&:before?)
+        after_hooks = hooks.filter(&:after?)
 
         reports = []
 
@@ -29,7 +34,12 @@ module Easytest
             c.skip!
           end
 
-          result, report = c.run
+          begin
+            before_hooks.each { |hook| hook.run(c) }
+            result, report = c.run
+          ensure
+            after_hooks.each { |hook| hook.run(c) }
+          end
 
           case result
           when :passed
@@ -80,6 +90,14 @@ module Easytest
 
     def add_case(new_case)
       cases << new_case
+    end
+
+    def hooks
+      @hooks ||= []
+    end
+
+    def add_hook(hook)
+      hooks << hook
     end
 
     private

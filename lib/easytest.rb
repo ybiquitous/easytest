@@ -7,6 +7,7 @@ require_relative "easytest/case"
 require_relative "easytest/dsl"
 require_relative "easytest/errors"
 require_relative "easytest/expectation"
+require_relative "easytest/hook"
 require_relative "easytest/reporter"
 require_relative "easytest/runner"
 require_relative "easytest/utils"
@@ -36,7 +37,11 @@ module Easytest
   end
 
   def self.add_case(new_case)
-    @runner.cases << new_case
+    @runner.add_case(new_case)
+  end
+
+  def self.add_hook(hook)
+    @runner.add_hook(hook)
   end
 
   def self.run

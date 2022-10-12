@@ -23,6 +23,14 @@ test "simple case" do
   expect { 1 / 2 }.to_raise_nothing
 end
 
+before do |c|
+  puts "Running a test case \"#{c.name}\"..."
+end
+
+after do |c|
+  puts "Finished a test case \"#{c.name}\"..."
+end
+
 test "add something later"
 
 skip "failed case" do

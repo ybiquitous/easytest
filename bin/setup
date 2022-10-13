@@ -7,5 +7,6 @@ bundle install
 bundle update
 bundle clean
 
-bundle exec rbs collection clean
 bundle exec rbs collection install
+bundle exec rbs collection update
+bundle exec rbs collection clean

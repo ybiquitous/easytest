@@ -12,9 +12,9 @@ module Easytest
 
     private
 
-    def report_match_error: (untyped error) -> String
+    def report_match_error: (MatchError error) -> String
 
-    def report_fatal_error: (untyped error) -> String
+    def report_fatal_error: (Exception error) -> String
 
     def find_location: (Exception error) -> Thread::Backtrace::Location
 

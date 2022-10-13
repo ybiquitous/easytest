@@ -2,7 +2,7 @@ module Easytest
   class Case
     attr_reader file: String
 
-    attr_reader block: untyped
+    attr_reader block: (^() -> void)?
 
     attr_reader skipped: bool
 
@@ -13,8 +13,6 @@ module Easytest
     alias only? only
 
     def initialize: (name: String, ?skipped: bool, ?only: bool) ?{ () -> void } -> void
-
-    def todo?: () -> bool
 
     def skip!: () -> void
 

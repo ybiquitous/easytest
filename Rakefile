@@ -22,6 +22,11 @@ task :typecheck do
   sh "steep check --with-expectations"
 end
 
+desc "Run type-check saving expectations"
+task :typecheck_save do
+  sh "steep check --save-expectations"
+end
+
 desc "Run lint"
 task lint: %i[rubocop typecheck rdoc]
 

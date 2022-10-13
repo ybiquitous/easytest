@@ -17,16 +17,12 @@ module Easytest
       @only = only
     end
 
-    def todo?
-      block.nil?
-    end
-
     def skip!
       @skipped = true
     end
 
     def run
-      return [:todo, Reporter.new(name).report_todo] if todo?
+      return [:todo, Reporter.new(name).report_todo] unless block
       return [:skipped, Reporter.new(name).report_skip] if skipped?
 
       block.call

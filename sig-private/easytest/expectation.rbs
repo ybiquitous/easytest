@@ -4,12 +4,12 @@ module Easytest
 
     attr_reader actual: untyped
 
-    attr_reader block: untyped
+    attr_reader block: (^() -> void)?
 
     attr_reader negate: bool
 
     alias negate? negate
 
-    def initialize: (untyped actual, ?negate: bool) ?{ () -> untyped } -> void
+    def initialize: (untyped actual, ?negate: bool) ?{ () -> void } -> void
   end
 end

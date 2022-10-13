@@ -4,6 +4,19 @@
   - range:
       start:
         line: 4
+        character: 10
+      end:
+        line: 4
+        character: 14
+    severity: ERROR
+    message: |-
+      Cannot allow method body have type `void` because declared as type `(::TrueClass | ::FalseClass | ::Time | nil | ::Integer)`
+        void <: (::TrueClass | ::FalseClass | ::Time | nil | ::Integer)
+          void <: ::TrueClass
+    code: Ruby::MethodBodyTypeMismatch
+  - range:
+      start:
+        line: 4
         character: 14
       end:
         line: 4
@@ -13,6 +26,22 @@
       (::String | ::IO), ?(::String | ::IO)) -> (::TrueClass | ::FalseClass | ::Time
       | nil | ::Integer)`
     code: Ruby::MethodArityMismatch
+  - range:
+      start:
+        line: 5
+        character: 36
+      end:
+        line: 5
+        character: 40
+    severity: ERROR
+    message: |-
+      Cannot pass a value of type `(::String | ::Integer)` as an argument of type `::String`
+        (::String | ::Integer) <: ::String
+          ::Integer <: ::String
+            ::Numeric <: ::String
+              ::Object <: ::String
+                ::BasicObject <: ::String
+    code: Ruby::ArgumentTypeMismatch
   - range:
       start:
         line: 6

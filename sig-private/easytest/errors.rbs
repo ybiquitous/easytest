@@ -10,6 +10,6 @@ module Easytest
 
     attr_reader expected: untyped
 
-    def initialize: (message: untyped, actual: untyped, expected: untyped) -> void
+    def initialize: (message: String, actual: untyped, expected: untyped) -> void
   end
 end

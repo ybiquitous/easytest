@@ -4,42 +4,42 @@ module Easytest
 
     @hooks: Array[Hook]
 
-    attr_reader start_time: untyped
+    attr_reader start_time: Time
 
-    attr_accessor passed_count: untyped
+    attr_accessor passed_count: Integer
 
-    attr_accessor failed_count: untyped
+    attr_accessor failed_count: Integer
 
-    attr_accessor skipped_count: untyped
+    attr_accessor skipped_count: Integer
 
-    attr_accessor todo_count: untyped
+    attr_accessor todo_count: Integer
 
-    attr_accessor file_count: untyped
+    attr_accessor file_count: Integer
 
-    def initialize: (?start_time: untyped) -> void
+    def initialize: (?start_time: Time) -> void
 
-    def run: () -> untyped
+    def run: () -> void
 
-    def cases: () -> untyped
+    def cases: () -> Array[Case]
 
-    def add_case: (untyped new_case) -> untyped
+    def add_case: (Case new_case) -> void
 
-    def hooks: () -> untyped
+    def hooks: () -> Array[Hook]
 
-    def add_hook: (untyped hook) -> untyped
+    def add_hook: (Hook hook) -> void
 
     private
 
-    def total_count: () -> untyped
+    def total_count: () -> Integer
 
-    def all_passed?: () -> untyped
+    def all_passed?: () -> bool
 
-    def no_tests?: () -> untyped
+    def no_tests?: () -> bool
 
-    def print_reports: (untyped reports) -> untyped
+    def print_reports: (Array[[Symbol, String]] reports) -> void
 
-    def elapsed_time: () -> untyped
+    def elapsed_time: () -> Float
 
-    def summary: () -> untyped
+    def summary: () -> String
   end
 end

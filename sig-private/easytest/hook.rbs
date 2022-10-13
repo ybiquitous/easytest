@@ -6,12 +6,12 @@ module Easytest
 
     attr_reader block: ^(Case) -> void
 
-    def initialize: (type: untyped) { (Case) -> void } -> void
+    def initialize: (type: Symbol) { (Case) -> void } -> void
 
     def run: (Case test_case) -> void
 
-    def before?: () -> untyped
+    def before?: () -> bool
 
-    def after?: () -> untyped
+    def after?: () -> bool
   end
 end

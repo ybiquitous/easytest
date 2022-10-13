@@ -3,7 +3,7 @@ module Easytest
     class Raise < Base
       @raised_error: Exception
 
-      attr_reader with_message: untyped
+      attr_reader with_message: (String | Regexp)?
 
       def initialize: (actual: untyped, expected: untyped, negate: bool, with_message: (String | Regexp)?) -> void
 

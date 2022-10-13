@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Head
+## 0.8.1
 
 - Improve type-checking.
 

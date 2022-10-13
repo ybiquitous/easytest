@@ -6,3 +6,6 @@ set -vx
 bundle install
 bundle update
 bundle clean
+
+bundle exec rbs collection clean
+bundle exec rbs collection install

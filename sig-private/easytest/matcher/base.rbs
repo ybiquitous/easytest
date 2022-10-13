@@ -1,0 +1,27 @@
+module Easytest
+  module Matcher
+    class Base
+      attr_reader actual: untyped
+
+      attr_reader expected: untyped
+
+      attr_reader negate: bool
+
+      alias negate? negate
+
+      def initialize: (actual: untyped, expected: untyped, ?negate: bool) -> void
+
+      def match?: () -> bool
+
+      def match!: () -> void
+
+      private
+
+      def message: () -> String
+
+      def build_error_message: () -> String
+
+      def raise_match_error: () -> void
+    end
+  end
+end

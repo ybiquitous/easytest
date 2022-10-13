@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Head
+
+- Improve type-checking.
+
 ## 0.8.0
 
 - Add `before` and `after` hooks.

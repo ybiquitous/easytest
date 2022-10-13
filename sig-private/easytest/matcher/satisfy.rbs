@@ -1,0 +1,6 @@
+module Easytest
+  module Matcher
+    class Satisfy < Base
+    end
+  end
+end

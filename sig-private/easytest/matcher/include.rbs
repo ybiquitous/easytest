@@ -1,0 +1,6 @@
+module Easytest
+  module Matcher
+    class Include < Base
+    end
+  end
+end

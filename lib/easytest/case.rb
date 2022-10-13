@@ -11,14 +11,10 @@ module Easytest
 
     def initialize(name:, skipped: false, only: false, &block)
       @name = name
-      @file = caller_locations(3, 1).first.absolute_path
+      @file = (caller_locations(3, 1)&.first&.absolute_path or raise)
       @block = block
       @skipped = skipped
       @only = only
-    end
-
-    def todo?
-      block.nil?
     end
 
     def skip!
@@ -26,7 +22,7 @@ module Easytest
     end
 
     def run
-      return [:todo, Reporter.new(name).report_todo] if todo?
+      return [:todo, Reporter.new(name).report_todo] unless block
       return [:skipped, Reporter.new(name).report_skip] if skipped?
 
       block.call

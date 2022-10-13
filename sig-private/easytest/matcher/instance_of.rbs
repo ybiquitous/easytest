@@ -1,0 +1,6 @@
+module Easytest
+  module Matcher
+    class InstanceOf < Base
+    end
+  end
+end

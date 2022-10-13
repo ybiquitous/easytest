@@ -1,0 +1,15 @@
+module Easytest
+  class Error < StandardError
+  end
+
+  class FatalError < Error
+  end
+
+  class MatchError < Error
+    attr_reader actual: untyped
+
+    attr_reader expected: untyped
+
+    def initialize: (message: String, actual: untyped, expected: untyped) -> void
+  end
+end

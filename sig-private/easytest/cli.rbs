@@ -1,0 +1,25 @@
+module Easytest
+  class CLI
+    SUCCESS: Integer
+
+    FAILURE: Integer
+
+    FATAL: Integer
+
+    def run: () -> Integer
+
+    private
+
+    attr_reader argv: Array[String]
+
+    attr_reader start_time: Time
+
+    def initialize: (Array[String] argv) -> void
+
+    def parse_options: () -> Integer?
+
+    def help: (OptionParser parser) -> String
+
+    def setup: () -> void
+  end
+end

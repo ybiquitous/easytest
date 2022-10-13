@@ -7,7 +7,7 @@ module Easytest
     def initialize(type:, &block)
       raise ArgumentError, "" unless [:before, :after].include?(type)
 
-      @file = caller_locations(3, 1).first.absolute_path
+      @file = (caller_locations(3, 1)&.first&.absolute_path or raise)
       @type = type
       @block = block
     end

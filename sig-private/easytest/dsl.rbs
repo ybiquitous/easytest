@@ -1,0 +1,4 @@
+module Easytest
+  module DSL
+  end
+end

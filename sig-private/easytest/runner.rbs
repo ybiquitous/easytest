@@ -1,0 +1,45 @@
+module Easytest
+  class Runner
+    @cases: Array[Case]
+
+    @hooks: Array[Hook]
+
+    attr_reader start_time: untyped
+
+    attr_accessor passed_count: untyped
+
+    attr_accessor failed_count: untyped
+
+    attr_accessor skipped_count: untyped
+
+    attr_accessor todo_count: untyped
+
+    attr_accessor file_count: untyped
+
+    def initialize: (?start_time: untyped) -> void
+
+    def run: () -> untyped
+
+    def cases: () -> untyped
+
+    def add_case: (untyped new_case) -> untyped
+
+    def hooks: () -> untyped
+
+    def add_hook: (untyped hook) -> untyped
+
+    private
+
+    def total_count: () -> untyped
+
+    def all_passed?: () -> untyped
+
+    def no_tests?: () -> untyped
+
+    def print_reports: (untyped reports) -> untyped
+
+    def elapsed_time: () -> untyped
+
+    def summary: () -> untyped
+  end
+end

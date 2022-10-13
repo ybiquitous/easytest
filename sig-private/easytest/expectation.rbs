@@ -1,0 +1,15 @@
+module Easytest
+  class Expectation
+    private
+
+    attr_reader actual: untyped
+
+    attr_reader block: untyped
+
+    attr_reader negate: bool
+
+    alias negate? negate
+
+    def initialize: (untyped actual, ?negate: bool) ?{ () -> untyped } -> void
+  end
+end

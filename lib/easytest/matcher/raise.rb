@@ -3,9 +3,9 @@ module Easytest
     class Raise < Base
       attr_reader :with_message
 
-      def initialize(**kwargs)
-        @with_message = kwargs.delete(:with_message)
-        super(**kwargs)
+      def initialize(actual:, expected:, negate:, with_message:)
+        super(actual: actual, expected: expected, negate: negate)
+        @with_message = with_message
       end
 
       def match?

@@ -1,0 +1,6 @@
+module Easytest
+  module Matcher
+    class Nil < Base
+    end
+  end
+end

@@ -1,0 +1,23 @@
+module Easytest
+  class Case
+    attr_reader file: String
+
+    attr_reader block: untyped
+
+    attr_reader skipped: bool
+
+    attr_reader only: bool
+
+    alias skipped? skipped
+
+    alias only? only
+
+    def initialize: (name: String, ?skipped: bool, ?only: bool) ?{ () -> void } -> void
+
+    def todo?: () -> bool
+
+    def skip!: () -> void
+
+    def run: () -> [Symbol, String?]
+  end
+end

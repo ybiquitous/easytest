@@ -1,0 +1,25 @@
+module Easytest
+  class CLI
+    SUCCESS: 0
+
+    FAILURE: 1
+
+    FATAL: 2
+
+    def run: () -> untyped
+
+    private
+
+    attr_reader argv: untyped
+
+    attr_reader start_time: untyped
+
+    def initialize: (untyped argv) -> void
+
+    def parse_options: () -> untyped
+
+    def help: (untyped parser) -> ::String
+
+    def setup: () -> untyped
+  end
+end

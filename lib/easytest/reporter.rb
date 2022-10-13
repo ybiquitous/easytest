@@ -51,14 +51,15 @@ module Easytest
     end
 
     def find_location(error)
-      location = error.backtrace_locations.find do |loc|
-        loc.path.end_with?("_test.rb")
+      location = error.backtrace_locations&.find do |loc|
+        loc.path&.end_with?("_test.rb")
       end
       location or raise "Not found test location from #{error.inspect}"
     end
 
     def format_location(location)
-      path = Pathname(location.absolute_path).relative_path_from(Dir.pwd)
+      absolute_path = location.absolute_path or raise
+      path = Pathname(absolute_path).relative_path_from(Dir.pwd)
       "# #{path}:#{location.lineno}:in `#{location.label}'"
     end
   end

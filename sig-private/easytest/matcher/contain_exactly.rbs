@@ -1,0 +1,6 @@
+module Easytest
+  module Matcher
+    class ContainExactly < Base
+    end
+  end
+end

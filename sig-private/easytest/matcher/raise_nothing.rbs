@@ -1,0 +1,9 @@
+module Easytest
+  module Matcher
+    class RaiseNothing < Base
+      @raised_error: Exception
+
+      def initialize: (actual: untyped) -> void
+    end
+  end
+end

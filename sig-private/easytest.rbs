@@ -1,0 +1,13 @@
+module Easytest
+  self.@runner: Runner
+
+  def self.start: () -> untyped
+
+  def self.add_case: (untyped new_case) -> untyped
+
+  def self.add_hook: (untyped hook) -> untyped
+
+  def self.run: () -> untyped
+
+  def self.test_files_location: () -> untyped
+end

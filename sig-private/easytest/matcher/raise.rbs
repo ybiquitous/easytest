@@ -1,0 +1,15 @@
+module Easytest
+  module Matcher
+    class Raise < Base
+      @raised_error: Exception
+
+      attr_reader with_message: untyped
+
+      def initialize: (actual: untyped, expected: untyped, negate: bool, with_message: (String | Regexp)?) -> void
+
+      private
+
+      def match_error?: (Exception error) -> bool
+    end
+  end
+end

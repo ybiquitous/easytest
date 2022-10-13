@@ -1,4 +1,44 @@
 ---
+- file: lib/easytest/dsl.rb
+  diagnostics:
+  - range:
+      start:
+        line: 4
+        character: 14
+      end:
+        line: 4
+        character: 28
+    severity: ERROR
+    message: Method parameters are incompatible with declaration `((::String | ::Integer),
+      (::String | ::IO), ?(::String | ::IO)) -> (::TrueClass | ::FalseClass | ::Time
+      | nil | ::Integer)`
+    code: Ruby::MethodArityMismatch
+  - range:
+      start:
+        line: 6
+        character: 31
+      end:
+        line: 6
+        character: 34
+    severity: ERROR
+    message: The method cannot be called without a block
+    code: Ruby::RequiredBlockMissing
+  - range:
+      start:
+        line: 6
+        character: 41
+      end:
+        line: 6
+        character: 45
+    severity: ERROR
+    message: |-
+      Cannot pass a value of type `(::String | ::Integer)` as an argument of type `::String`
+        (::String | ::Integer) <: ::String
+          ::Integer <: ::String
+            ::Numeric <: ::String
+              ::Object <: ::String
+                ::BasicObject <: ::String
+    code: Ruby::ArgumentTypeMismatch
 - file: test/smoke_test.rb
   diagnostics:
   - range:

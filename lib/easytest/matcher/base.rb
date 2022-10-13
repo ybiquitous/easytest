@@ -22,6 +22,8 @@ module Easytest
         raise_match_error unless matched
       end
 
+      private
+
       def message
         raise NotImplementedError
       end

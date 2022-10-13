@@ -9,8 +9,8 @@ module Easytest
 
   # An expectation in test cases.
   class Expectation
-    # Negate an expectation.
-    def not: () -> instance
+    # Negate this expectation.
+    def not: () -> Expectation
 
     # Expect to equal the given object.
     def to_eq: (untyped expected) -> void
@@ -56,7 +56,7 @@ module Easytest
     def to_satisfy: () { (untyped actual) -> bool } -> void
 
     # Expect to raise the given exception or an exception with the given message.
-    def to_raise: (Class expected, ?(String | Regexp) with_message) -> void
+    def to_raise: (Class expected, ?(String | Regexp)? with_message) -> void
                 | ((String | Regexp) expected) -> void
 
     # Expect to raise nothing.
@@ -65,8 +65,8 @@ module Easytest
 
   # A test case.
   class Case
-    # Return a test case name.
-    def name: () -> String
+    # A test case name.
+    attr_reader name: String
   end
 end
 

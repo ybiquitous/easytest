@@ -1,0 +1,11 @@
+module Easytest
+  module Utils
+    def self?.terminal_hyperlink: (untyped absolute_path) -> ::String
+
+    def self?.raise_if_no_test_name: (untyped name, method: untyped) -> (untyped | nil)
+
+    def self?.pluralize: (untyped singular, untyped count) -> (untyped | ::String)
+
+    def self?.indent_text: (untyped text, untyped indent_string) -> untyped
+  end
+end

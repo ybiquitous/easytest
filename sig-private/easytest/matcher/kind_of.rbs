@@ -1,0 +1,6 @@
+module Easytest
+  module Matcher
+    class KindOf < Base
+    end
+  end
+end

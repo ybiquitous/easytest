@@ -1,0 +1,17 @@
+module Easytest
+  class Hook
+    attr_reader file: String
+
+    attr_reader type: Symbol
+
+    attr_reader block: ^(Case) -> void
+
+    def initialize: (type: untyped) { (Case) -> void } -> void
+
+    def run: (Case test_case) -> void
+
+    def before?: () -> untyped
+
+    def after?: () -> untyped
+  end
+end

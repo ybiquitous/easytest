@@ -11,7 +11,7 @@ module Easytest
 
     def initialize(name:, skipped: false, only: false, &block)
       @name = name
-      @file = caller_locations(3, 1).first.absolute_path
+      @file = (caller_locations(3, 1)&.first&.absolute_path or raise)
       @block = block
       @skipped = skipped
       @only = only

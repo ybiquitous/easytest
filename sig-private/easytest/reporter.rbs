@@ -1,0 +1,23 @@
+module Easytest
+  class Reporter
+    attr_reader name: String
+
+    def initialize: (String name) -> void
+
+    def report_error: (Exception error) -> String?
+
+    def report_skip: () -> String
+
+    def report_todo: () -> String
+
+    private
+
+    def report_match_error: (untyped error) -> String
+
+    def report_fatal_error: (untyped error) -> String
+
+    def find_location: (Exception error) -> Thread::Backtrace::Location
+
+    def format_location: (Thread::Backtrace::Location location) -> String
+  end
+end

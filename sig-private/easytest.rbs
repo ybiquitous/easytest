@@ -1,13 +1,15 @@
 module Easytest
   self.@runner: Runner
 
-  def self.start: () -> void
+  def self.start: (?no_tests_forbidden: bool) -> void
 
   def self.add_case: (Case new_case) -> void
 
   def self.add_hook: (Hook hook) -> void
 
   def self.run: () -> void
+
+  def self.test_dir: () -> String
 
   def self.test_files_location: () -> String
 end

@@ -32,8 +32,8 @@ require_relative "easytest/matcher/satisfy"
 require_relative "easytest/matcher/true"
 
 module Easytest
-  def self.start
-    @runner = Runner.new
+  def self.start(no_tests_forbidden: true)
+    @runner = Runner.new(no_tests_forbidden: no_tests_forbidden)
   end
 
   def self.add_case(new_case)
@@ -48,7 +48,11 @@ module Easytest
     @runner.run
   end
 
+  def self.test_dir
+    "test"
+  end
+
   def self.test_files_location
-    "test/**/*_test.rb"
+    "#{test_dir}/**/*_test.rb"
   end
 end

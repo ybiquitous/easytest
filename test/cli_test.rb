@@ -1,6 +1,7 @@
 require "test_helper"
 require "open3"
 require "pathname"
+require "tempfile"
 
 using Easytest::DSL
 
@@ -16,8 +17,9 @@ USAGE
   easytest [options] [<file, directory, or pattern>...]
 
 OPTIONS
-  --help      Show help
-  --version   Show version
+  -w, --watch    Watch file changes and rerun test
+  --help         Show help
+  --version      Show version
 
 EXAMPLES
   # Run all tests (test/**/*_test.rb)
@@ -26,10 +28,10 @@ EXAMPLES
   # Run only test files
   $ easytest test/example_test.rb
 
-  # Run only test files in specified directories
+  # Run only test files in given directories
   $ easytest test/example
 
-  # Run only test files that matches specified patterns
+  # Run only test files that matches given patterns
   $ easytest example
 MSG
   expect(stderr).to_eq ""
@@ -121,4 +123,21 @@ test "hooks" do
 MSG
   expect(stderr).to_eq ""
   expect(status).to_eq 1
+end
+
+test "watch mode" do
+  Process.fork do
+    stdout = Tempfile.create("easytest_cli_test_stdout", __dir__)
+    stderr = Tempfile.create("easytest_cli_test_stderr", __dir__)
+
+    pid = Process.spawn("easytest --watch", out: stdout, err: stderr)
+    sleep 0.5
+    Process.kill("INT", pid)
+
+    expect(File.read(stdout)).to_match "Start watching"
+    expect(File.read(stderr)).to_eq ""
+  ensure
+    File.unlink(stdout)
+    File.unlink(stderr)
+  end
 end

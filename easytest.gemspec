@@ -22,5 +22,6 @@ Gem::Specification.new do |spec|
   spec.executables = ["easytest"]
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "listen", ">= 3.7"
   spec.add_dependency "rainbow", ">= 3.1"
 end

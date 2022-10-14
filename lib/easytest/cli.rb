@@ -8,8 +8,13 @@ module Easytest
     FATAL = 2
 
     def run
-      exit_code = parse_options
+      exit_code = parse_argv
       return exit_code if exit_code
+
+      if watch?
+        watch_files
+        return SUCCESS
+      end
 
       Easytest.start
       setup
@@ -21,34 +26,41 @@ module Easytest
 
     attr_reader :argv
     attr_reader :start_time
+    attr_reader :options
+    attr_reader :parser
 
     def initialize(argv)
       @argv = argv
       @start_time = Time.now
+      @options = {}
+      @parser = init_parser
     end
 
-    def parse_options
-      # @type var options: Hash[Symbol, bool]
-      options = {}
+    def init_parser
+      OptionParser.new do |op|
+        op.program_name = "easytest"
+        op.version = "#{op.program_name} #{Easytest::VERSION}"
 
-      parser = OptionParser.new do |p|
-        p.program_name = "easytest"
-        p.version = "#{p.program_name} #{Easytest::VERSION}"
+        op.on "-w", "--watch" do
+          options[:watch] = true
+        end
 
-        p.on "--help" do
+        op.on "--help" do
           options[:help] = true
         end
 
-        p.on "--version" do
+        op.on "--version" do
           options[:version] = true
         end
       end
+    end
 
+    def parse_argv
       begin
         parser.parse!(argv)
 
         if options[:help]
-          puts help(parser)
+          puts help
           return SUCCESS
         end
 
@@ -64,37 +76,73 @@ module Easytest
       end
     end
 
-    def help(parser)
+    def help
+      program = Rainbow(parser.program_name).green
+      heading = ->(text) { Rainbow(text).bright }
+      secondary = ->(text) { Rainbow(text).dimgray }
+      option = ->(text) { Rainbow(text).yellow }
+      prompt = ->() { Rainbow("$").cyan }
+
       <<~MSG
-        #{Rainbow("USAGE").bright}
-          #{parser.program_name} [options] [<file, directory, or pattern>...]
+        #{heading["USAGE"]}
+          #{program} [options] [<file, directory, or pattern>...]
 
-        #{Rainbow("OPTIONS").bright}
-          --help      Show help
-          --version   Show version
+        #{heading["OPTIONS"]}
+          #{option["-w, --watch"]}    Watch file changes and rerun test
+          #{option["--help"]}         Show help
+          #{option["--version"]}      Show version
 
-        #{Rainbow("EXAMPLES").bright}
-          # Run all tests (test/**/*_test.rb)
-          $ easytest
+        #{heading["EXAMPLES"]}
+          #{secondary["# Run all tests (test/**/*_test.rb)"]}
+          #{prompt[]} #{program}
 
-          # Run only test files
-          $ easytest test/example_test.rb
+          #{secondary["# Run only test files"]}
+          #{prompt[]} #{program} test/example_test.rb
 
-          # Run only test files in specified directories
-          $ easytest test/example
+          #{secondary["# Run only test files in given directories"]}
+          #{prompt[]} #{program} test/example
 
-          # Run only test files that matches specified patterns
-          $ easytest example
+          #{secondary["# Run only test files that matches given patterns"]}
+          #{prompt[]} #{program} example
       MSG
     end
 
     def setup
-      Dir.glob(Easytest.test_files_location)
-        .map { |file| File.absolute_path(file) }
+      test_files
         .filter do |file|
           argv.empty? || argv.any? { |pattern| file.include?(pattern) }
         end
         .each { |test_file| load test_file }
+    end
+
+    def test_files
+      Dir.glob(Easytest.test_files_location).map do |file|
+        File.absolute_path(file)
+      end
+    end
+
+    def watch?
+      options[:watch] == true
+    end
+
+    def watch_files
+      require "listen"
+      listener = Listen.to(Easytest.test_dir, only: /_test\.rb$/) do |modified, added|
+        Easytest.start(no_tests_forbidden: false)
+        test_files.intersection(modified + added).each do |file|
+          load(file)
+        end
+        Easytest.run
+      end
+      listener.start
+
+      begin
+        puts "Start watching \"#{Easytest.test_files_location}\" changed. Press Ctrl-C to stop."
+        sleep
+      rescue Interrupt
+        puts
+        puts "Stopped watching."
+      end
     end
   end
 end

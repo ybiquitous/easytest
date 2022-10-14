@@ -1,21 +1,5 @@
 module Easytest
   class Runner
-    attr_reader :start_time
-    attr_accessor :passed_count
-    attr_accessor :failed_count
-    attr_accessor :skipped_count
-    attr_accessor :todo_count
-    attr_accessor :file_count
-
-    def initialize(start_time: Time.now)
-      @start_time = start_time
-      @passed_count = 0
-      @failed_count = 0
-      @skipped_count = 0
-      @todo_count = 0
-      @file_count = 0
-    end
-
     def run
       include_only_case = cases.any?(&:only?)
       hooks_by_file = hooks.group_by(&:file)
@@ -71,12 +55,7 @@ module Easytest
       end
 
       if no_tests?
-        $stderr.puts <<~MSG
-          #{Rainbow("Oops. No tests found!").red.bright}
-
-          #{Rainbow("Put `#{Easytest.test_files_location}` files to include at least one test case.").red}
-          #{Rainbow("Or specify a pattern that matches an existing test file.").red}
-        MSG
+        print_error_for_no_tests if no_tests_forbidden?
         false
       else
         puts ""
@@ -104,6 +83,26 @@ module Easytest
 
     private
 
+    attr_reader :start_time
+    attr_reader :no_tests_forbidden
+    alias no_tests_forbidden? no_tests_forbidden
+
+    attr_accessor :passed_count
+    attr_accessor :failed_count
+    attr_accessor :skipped_count
+    attr_accessor :todo_count
+    attr_accessor :file_count
+
+    def initialize(start_time: Time.now, no_tests_forbidden: true)
+      @start_time = start_time
+      @no_tests_forbidden = no_tests_forbidden
+      @passed_count = 0
+      @failed_count = 0
+      @skipped_count = 0
+      @todo_count = 0
+      @file_count = 0
+    end
+
     def total_count
       passed_count + failed_count + skipped_count + todo_count
     end
@@ -114,6 +113,15 @@ module Easytest
 
     def no_tests?
       total_count == 0
+    end
+
+    def print_error_for_no_tests
+      $stderr.puts <<~MSG
+        #{Rainbow("Oops. No tests found!").red.bright}
+
+        #{Rainbow("Put `#{Easytest.test_files_location}` files to include at least one test case.").red}
+        #{Rainbow("Or specify a pattern that matches an existing test file.").red}
+      MSG
     end
 
     def print_reports(reports)

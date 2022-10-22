@@ -2,7 +2,7 @@ module Easytest
   module Matcher
     class ContainExactly < Base
       def match?
-        (actual.to_a - expected).empty?
+        (Array(actual) - Array(expected)).empty?
       end
 
       def message

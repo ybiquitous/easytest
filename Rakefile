@@ -5,7 +5,7 @@ require "rdoc/task"
 task default: %i[lint test]
 
 desc "Run lint"
-task lint: %i[rubocop rbs:setup typecheck:run rdoc]
+task lint: %i[rubocop rbs:setup typecheck:run typecheck:stats rdoc]
 
 RuboCop::RakeTask.new
 
@@ -29,6 +29,11 @@ namespace :typecheck do
   desc "Run type-check saving expectations"
   task :save do
     sh "steep check --save-expectations"
+  end
+
+  desc "Show type coverage stats"
+  task :stats do
+    sh "steep stats"
   end
 end
 

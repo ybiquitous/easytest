@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class Satisfy < Base
+    class Satisfy < Base[untyped, Proc]
     end
   end
 end

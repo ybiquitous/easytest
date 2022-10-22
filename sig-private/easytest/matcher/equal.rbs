@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class Equal < Base
+    class Equal < Base[Object, untyped]
     end
   end
 end

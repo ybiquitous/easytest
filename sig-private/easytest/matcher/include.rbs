@@ -1,6 +1,10 @@
 module Easytest
   module Matcher
-    class Include < Base
+    interface _Include
+      def include?: (untyped) -> bool
+    end
+
+    class Include < Base[_Include, untyped]
     end
   end
 end

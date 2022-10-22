@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class False < Base
+    class False < Base[bool, untyped]
     end
   end
 end

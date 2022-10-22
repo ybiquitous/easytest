@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class HaveAttributes < Base
+    class HaveAttributes < Base[Object, Hash[Symbol, untyped]]
     end
   end
 end

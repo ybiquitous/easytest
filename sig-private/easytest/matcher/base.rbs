@@ -1,15 +1,15 @@
 module Easytest
   module Matcher
-    class Base
-      attr_reader actual: untyped
+    class Base[A, E]
+      attr_reader actual: A
 
-      attr_reader expected: untyped
+      attr_reader expected: E
 
       attr_reader negate: bool
 
       alias negate? negate
 
-      def initialize: (actual: untyped, expected: untyped, ?negate: bool) -> void
+      def initialize: (actual: A, expected: E, ?negate: bool) -> void
 
       def match?: () -> bool
 

@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class BeA < Base
+    class BeA < Base[Object, Module]
     end
   end
 end

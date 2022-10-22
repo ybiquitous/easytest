@@ -1,9 +1,9 @@
 module Easytest
   module Matcher
-    class RaiseNothing < Base
+    class RaiseNothing < Base[Proc, untyped]
       @raised_error: Exception
 
-      def initialize: (actual: untyped) -> void
+      def initialize: (actual: Proc) -> void
     end
   end
 end

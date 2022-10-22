@@ -1,6 +1,10 @@
 module Easytest
   module Matcher
-    class Empty < Base
+    interface _Empty
+      def empty?: () -> bool
+    end
+
+    class Empty < Base[_Empty, untyped]
     end
   end
 end

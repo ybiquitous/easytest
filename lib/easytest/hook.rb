@@ -4,7 +4,7 @@ module Easytest
     attr_reader :type
     attr_reader :block
 
-    def initialize(type:, &block)
+    def initialize(type:, block:)
       raise ArgumentError, "" unless [:before, :after].include?(type)
 
       @file = (caller_locations(3, 1)&.first&.absolute_path or raise)

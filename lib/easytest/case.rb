@@ -9,7 +9,7 @@ module Easytest
     alias skipped? skipped
     alias only? only
 
-    def initialize(name:, skipped: false, only: false, &block)
+    def initialize(name:, skipped: false, only: false, block: nil)
       @name = name
       @file = (caller_locations(3, 1)&.first&.absolute_path or raise)
       @block = block

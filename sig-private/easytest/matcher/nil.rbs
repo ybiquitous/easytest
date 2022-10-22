@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class Nil < Base
+    class Nil < Base[Object, untyped]
     end
   end
 end

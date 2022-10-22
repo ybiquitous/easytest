@@ -12,7 +12,7 @@ module Easytest
 
     alias only? only
 
-    def initialize: (name: String, ?skipped: bool, ?only: bool) ?{ () -> void } -> void
+    def initialize: (name: String, ?skipped: bool, ?only: bool, ?block: (^() -> void)?) -> void
 
     def skip!: () -> void
 

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Head
+
+- Improve type coverage.
+
 ## 0.8.1
 
 - Improve type-checking.

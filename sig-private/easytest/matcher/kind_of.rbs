@@ -1,6 +1,6 @@
 module Easytest
   module Matcher
-    class KindOf < Base
+    class KindOf < Base[Object, Module]
     end
   end
 end

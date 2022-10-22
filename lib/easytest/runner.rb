@@ -27,6 +27,7 @@ module Easytest
         before_hooks = hooks.filter(&:before?)
         after_hooks = hooks.filter(&:after?)
 
+        # @type var reports: Array[[Symbol, String]]
         reports = []
 
         cases_per_file.each do |c|
@@ -34,12 +35,13 @@ module Easytest
             c.skip!
           end
 
-          begin
-            before_hooks.each { |hook| hook.run(c) }
-            result, report = c.run
-          ensure
-            after_hooks.each { |hook| hook.run(c) }
-          end
+          result, report =
+            begin
+              before_hooks.each { |hook| hook.run(c) }
+              c.run
+            ensure
+              after_hooks.each { |hook| hook.run(c) }
+            end
 
           case result
           when :passed
@@ -133,6 +135,7 @@ module Easytest
     end
 
     def summary
+      # @type var list: Array[String]
       list = []
 
       if failed_count > 0

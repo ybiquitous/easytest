@@ -1,6 +1,16 @@
 module Easytest
   module Matcher
-    class ContainExactly < Base
+    interface _ToA
+      def to_a: () -> Array[untyped]
+    end
+
+    interface _ToAry
+      def to_ary: () -> Array[untyped]
+    end
+
+    type array_like = _ToA | _ToAry
+
+    class ContainExactly < Base[array_like, array_like]
     end
   end
 end

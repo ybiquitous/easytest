@@ -1,11 +1,11 @@
 module Easytest
   module Matcher
-    class Raise < Base
+    class Raise < Base[Proc, untyped]
       @raised_error: Exception
 
       attr_reader with_message: (String | Regexp)?
 
-      def initialize: (actual: untyped, expected: untyped, negate: bool, with_message: (String | Regexp)?) -> void
+      def initialize: (actual: Proc, expected: untyped, negate: bool, with_message: (String | Regexp)?) -> void
 
       private
 

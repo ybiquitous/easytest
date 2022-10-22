@@ -28,6 +28,7 @@ module Easytest
     end
 
     def parse_options
+      # @type var options: Hash[Symbol, bool]
       options = {}
 
       parser = OptionParser.new do |p|

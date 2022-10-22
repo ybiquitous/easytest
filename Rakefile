@@ -33,7 +33,7 @@ namespace :typecheck do
 
   desc "Show type coverage stats"
   task :stats do
-    sh "steep stats"
+    sh "steep stats --format=table"
   end
 end
 

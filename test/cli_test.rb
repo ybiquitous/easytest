@@ -132,7 +132,7 @@ test "watch mode" do
   begin
     Process.fork do
       pid = Process.spawn("easytest --watch", out: stdout, err: stderr)
-      sleep 1
+      sleep 5
       Process.kill("INT", pid)
     end
     Process.wait

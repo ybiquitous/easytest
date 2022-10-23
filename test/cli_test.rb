@@ -135,7 +135,7 @@ test "watch mode" do
     Process.kill("INT", pid)
 
     expect(File.read(stdout)).to_match "Start watching"
-    expect(File.read(stderr)).to_eq ""
+    expect(File.read(stderr)).to_eq "foo"
   ensure
     File.unlink(stdout) if stdout
     File.unlink(stderr) if stderr

@@ -126,18 +126,16 @@ MSG
 end
 
 test "watch mode" do
-  Process.fork do
-    stdout = Tempfile.create("easytest_cli_test_stdout", __dir__)
-    stderr = Tempfile.create("easytest_cli_test_stderr", __dir__)
+  stdout = Tempfile.create("easytest_cli_test_stdout", __dir__)
+  stderr = Tempfile.create("easytest_cli_test_stderr", __dir__)
 
-    pid = Process.spawn("easytest --watch", out: stdout, err: stderr)
-    sleep 0.5
-    Process.kill("INT", pid)
+  pid = Process.spawn("easytest --watch", out: stdout, err: stderr)
+  sleep 0.5
+  Process.kill("INT", pid)
 
-    expect(File.read(stdout)).to_match "Start watching"
-    expect(File.read(stderr)).to_eq ""
-  ensure
-    File.unlink(stdout)
-    File.unlink(stderr)
-  end
+  expect(File.read(stdout)).to_match "Start watching"
+  expect(File.read(stderr)).to_eq ""
+ensure
+  File.unlink(stdout)
+  File.unlink(stderr)
 end

@@ -142,7 +142,6 @@ test "watch mode" do
   end
 
   Process.wait
-  expect(Process.last_status.exitstatus).to_eq 0
 rescue NotImplementedError
   next # skip if `fork` is not implemented (e.g. Windows)
 end

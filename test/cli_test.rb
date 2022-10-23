@@ -129,13 +129,21 @@ test "watch mode" do
   stdout = Tempfile.create("easytest_cli_test_stdout", __dir__)
   stderr = Tempfile.create("easytest_cli_test_stderr", __dir__)
 
-  pid = Process.spawn("easytest --watch", out: stdout, err: stderr)
-  sleep 1
+  begin
+    Process.fork do
+      pid = Process.spawn("easytest --watch", out: stdout, err: stderr)
+      sleep 1
+      Process.kill("INT", pid)
+    end
+    Process.wait
+  rescue NotImplementedError
+    next # skip if `fork` is not implemented (e.g. Windows)
+  end
 
+  expect(Process.last_status).to_eq 0
   expect(File.read(stdout)).to_match "Start watching"
   expect(File.read(stderr)).to_eq ""
 ensure
-  Process.kill("INT", pid) if pid
   File.unlink(stdout) if stdout
   File.unlink(stderr) if stderr
 end

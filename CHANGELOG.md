@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Head
+## 0.9.0
 
 - Add watch mode (`--watch`).
 - Improve type coverage.

@@ -27,7 +27,7 @@ You can read more about Easytest on the [official website](https://ybiquitous.gi
 
 ## Usage
 
-Here is a very easy example.
+This section explains easy usage.
 
 First, put `test/addition_test.rb` as below:
 
@@ -126,3 +126,13 @@ test "addition"
 ```
 
 To-do cases will be reported as "todo".
+
+### Watch
+
+If you want to run tests immediately when changing code, specify the `--watch` option:
+
+```console
+$ easytest --watch
+```
+
+This *watch* mode is useful during development.

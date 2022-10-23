@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## Head
 
+- Add watch mode (`--watch`).
 - Improve type coverage.
 
 ## 0.8.1

@@ -14,12 +14,24 @@ module Easytest
 
     attr_reader start_time: Time
 
+    attr_reader options: Hash[Symbol, bool]
+
+    attr_reader parser: OptionParser
+
     def initialize: (Array[String] argv) -> void
 
-    def parse_options: () -> Integer?
+    def init_parser: () -> OptionParser
 
-    def help: (OptionParser parser) -> String
+    def parse_argv: () -> Integer?
+
+    def help: () -> String
 
     def setup: () -> void
+
+    def test_files: () -> Array[String]
+
+    def watch?: () -> bool
+
+    def watch_files: () -> void
   end
 end

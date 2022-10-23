@@ -4,20 +4,6 @@ module Easytest
 
     @hooks: Array[Hook]
 
-    attr_reader start_time: Time
-
-    attr_accessor passed_count: Integer
-
-    attr_accessor failed_count: Integer
-
-    attr_accessor skipped_count: Integer
-
-    attr_accessor todo_count: Integer
-
-    attr_accessor file_count: Integer
-
-    def initialize: (?start_time: Time) -> void
-
     def run: () -> void
 
     def cases: () -> Array[Case]
@@ -30,11 +16,30 @@ module Easytest
 
     private
 
+    attr_reader start_time: Time
+
+    attr_reader no_tests_forbidden: bool
+    alias no_tests_forbidden? no_tests_forbidden
+
+    attr_accessor passed_count: Integer
+
+    attr_accessor failed_count: Integer
+
+    attr_accessor skipped_count: Integer
+
+    attr_accessor todo_count: Integer
+
+    attr_accessor file_count: Integer
+
+    def initialize: (?start_time: Time, ?no_tests_forbidden: bool) -> void
+
     def total_count: () -> Integer
 
     def all_passed?: () -> bool
 
     def no_tests?: () -> bool
+
+    def print_error_for_no_tests: () -> void
 
     def print_reports: (Array[[Symbol, String]] reports) -> void
 

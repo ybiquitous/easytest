@@ -126,6 +126,10 @@ MSG
 end
 
 test "watch mode" do
+  # TODO: This `if` avoids "Terminate batch job (Y/N)?" prompt,
+  # but I'd like to test the case also on Windows.
+  next if Gem.win_platform?
+
   stdout = Tempfile.create("easytest_cli_test_stdout", __dir__)
   stderr = Tempfile.create("easytest_cli_test_stderr", __dir__)
 

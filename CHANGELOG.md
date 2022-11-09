@@ -4,8 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 0.10.0
 
-- **[Breaking]** Change refinement to `include` in an anonymous module.
-  The usage should change as follows:
+- **[Breaking]** Change refinement to `include` in an anonymous module. The usage should change as follows:
 
 ```diff
 -using Easytest::DSL

@@ -1,6 +1,6 @@
 require "test_helper"
 
-using Easytest::DSL
+include Easytest::DSL
 
 def subject(actual)
   Easytest::Expectation.new(actual)

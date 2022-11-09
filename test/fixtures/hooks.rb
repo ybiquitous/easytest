@@ -1,5 +1,5 @@
 require "easytest"
-using Easytest::DSL
+include Easytest::DSL
 
 count = { before: 0, after: 0, names: [] }
 

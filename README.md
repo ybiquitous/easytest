@@ -34,7 +34,7 @@ First, put `test/addition_test.rb` as below:
 ```ruby
 require "easytest"
 
-using Easytest::DSL
+include Easytest::DSL
 
 test "addition" do
   expect(1 + 2).to_eq 2

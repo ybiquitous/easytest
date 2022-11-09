@@ -5,6 +5,7 @@ module Easytest
 
   # Define methods for the Easytest DSL.
   module DSL
+    # Define a test case. If omitting a block, the case is considered a to-do.
     def test: (String name) ?{ () -> void } -> void
 
     # Run the given block before each test case.

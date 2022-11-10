@@ -54,8 +54,8 @@ $ easytest
     # test/addition_test.rb:6:in `block in <top (required)>'
 
 
- Tests:  1 failed, 0 passed, 1 total (1 files)
- Time:   0.00087 seconds
+Tests:  1 failed, 0 passed, 1 total (1 files)
+Time:   0.00087 seconds
 ```
 
 Oops. Let's fix the failure:
@@ -71,8 +71,8 @@ Then, run it again:
 $ easytest
  PASS  test/addition_test.rb
 
- Tests:  1 passed, 1 total (1 files)
- Time:   0.00077 seconds
+Tests:  1 passed, 1 total (1 files)
+Time:   0.00077 seconds
 ```
 
 The test now passes! 🎉

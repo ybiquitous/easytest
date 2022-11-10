@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 +extend Easytest::DSL
 ```
 
+- Remove extra whitespaces from console output.
+
 ## 0.9.0
 
 - Add watch mode (`--watch`).

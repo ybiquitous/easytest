@@ -3,7 +3,7 @@ require "open3"
 require "pathname"
 require "tempfile"
 
-include Easytest::DSL
+extend Easytest::DSL
 
 def run(cmd)
   stdout, stderr, status = Open3.capture3(cmd)

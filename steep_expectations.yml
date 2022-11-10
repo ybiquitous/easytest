@@ -3,16 +3,6 @@
   diagnostics:
   - range:
       start:
-        line: 3
-        character: 0
-      end:
-        line: 3
-        character: 7
-    severity: ERROR
-    message: Type `::Object` does not have method `include`
-    code: Ruby::NoMethod
-  - range:
-      start:
         line: 5
         character: 0
       end:

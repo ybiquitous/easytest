@@ -28,6 +28,8 @@ module Easytest
 
     def setup: () -> void
 
+    def load_test_file: (String file) -> void
+
     def test_files: () -> Array[String]
 
     def watch?: () -> bool

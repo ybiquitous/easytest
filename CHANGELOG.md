@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## Head
+
+- **[Breaking]** Change refinement to `extend` in an anonymous module. The usage should change as follows:
+
+```diff
+-using Easytest::DSL
++extend Easytest::DSL
+```
+
 ## 0.9.0
 
 - Add watch mode (`--watch`).

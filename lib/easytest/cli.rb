@@ -112,7 +112,11 @@ module Easytest
         .filter do |file|
           argv.empty? || argv.any? { |pattern| file.include?(pattern) }
         end
-        .each { |test_file| load test_file }
+        .each { load_test_file(_1) }
+    end
+
+    def load_test_file(file)
+      load(file, true)
     end
 
     def test_files
@@ -129,9 +133,7 @@ module Easytest
       require "listen"
       listener = Listen.to(Easytest.test_dir, only: /_test\.rb$/) do |modified, added|
         Easytest.start(no_tests_forbidden: false)
-        test_files.intersection(modified + added).each do |file|
-          load(file)
-        end
+        test_files.intersection(modified + added).each { load_test_file(_1) }
         Easytest.run
       end
       listener.start

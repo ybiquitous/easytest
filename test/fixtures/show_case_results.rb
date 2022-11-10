@@ -1,5 +1,5 @@
 require "easytest"
-using Easytest::DSL
+extend Easytest::DSL
 
 test "passed" do
   expect(1).to_eq 1

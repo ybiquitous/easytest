@@ -1,5 +1,5 @@
 require "easytest"
-using Easytest::DSL
+extend Easytest::DSL
 
 test "should not run this case" do
   raise

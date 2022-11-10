@@ -1,6 +1,6 @@
 require "easytest"
 
-using Easytest::DSL
+extend Easytest::DSL
 
 test "simple case" do
   expect(1 + 2).to_eq 3

@@ -5,6 +5,24 @@ module Easytest
 
   # Define methods for the Easytest DSL.
   module DSL
+    # Define a test case. If omitting a block, the case is considered a to-do.
+    def test: (String name) ?{ () -> void } -> void
+
+    # Run the given block before each test case.
+    def before: () { (Easytest::Case case) -> void } -> void
+
+    # Run the given block after each test case.
+    def after: () { (Easytest::Case case) -> void } -> void
+
+    # Skip the given test case.
+    def skip: (String name) { () -> void } -> void
+
+    # Run only the given test case.
+    def only: (String name) { () -> void } -> void
+
+    # Expect the given object or block to satisfy some criterion.
+    def expect: (untyped actual) -> Easytest::Expectation
+              | { () -> void } -> Easytest::Expectation
   end
 
   # An expectation in test cases.
@@ -68,25 +86,4 @@ module Easytest
     # A test case name.
     attr_reader name: String
   end
-end
-
-module Kernel
-  # TODO: Can we avoid `RBS::DuplicatedMethodDefinitionError` "::Kernel#test has duplicated definitions"?
-  # def test: (String name) ?{ () -> void } -> void
-
-  # Run the given block before each test case.
-  def before: () { (Easytest::Case case) -> void } -> void
-
-  # Run the given block after each test case.
-  def after: () { (Easytest::Case case) -> void } -> void
-
-  # Skip the given test case.
-  def skip: (String name) { () -> void } -> void
-
-  # Run only the given test case.
-  def only: (String name) { () -> void } -> void
-
-  # Expect the given object or block to satisfy some criterion.
-  def expect: (untyped actual) -> Easytest::Expectation
-            | { () -> void } -> Easytest::Expectation
 end

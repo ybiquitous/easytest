@@ -88,7 +88,7 @@ test "show case results" do
     # test/#{file.basename}:9:in `block in <top (required)>'
 
 
- Tests:  1 failed, 1 skipped, 1 todo, 1 passed, 4 total (1 file)
+Tests:  1 failed, 1 skipped, 1 todo, 1 passed, 4 total (1 file)
 MSG
   expect(stderr).to_eq ""
   expect(status).to_eq 1
@@ -101,7 +101,7 @@ test "run only case" do
   ⚠ skipped "should not run this case"
   ⚠ skipped "skipped"
 
- Tests:  2 skipped, 2 passed, 4 total (1 file)
+Tests:  2 skipped, 2 passed, 4 total (1 file)
 MSG
   expect(stderr).to_eq ""
   expect(status).to_eq 0
@@ -119,7 +119,7 @@ test "hooks" do
     # test/#{file.basename}:15:in `block in <top (required)>'
 
 
- Tests:  1 failed, 1 passed, 2 total (1 file)
+Tests:  1 failed, 1 passed, 2 total (1 file)
 MSG
   expect(stderr).to_eq ""
   expect(status).to_eq 1

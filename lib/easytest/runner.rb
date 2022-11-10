@@ -59,8 +59,8 @@ module Easytest
         false
       else
         puts ""
-        puts " #{Rainbow('Tests:').bright}  #{summary}"
-        puts " #{Rainbow('Time:').bright}   #{elapsed_time.round(5)} seconds"
+        puts "#{Rainbow('Tests:').bright}  #{summary}"
+        puts "#{Rainbow('Time:').bright}   #{elapsed_time.round(5)} seconds"
         all_passed?
       end
     end

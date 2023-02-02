@@ -10,4 +10,5 @@ target :lib do
   check "lib"
 
   library "optparse"
+  library "pathname"
 end

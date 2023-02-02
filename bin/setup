@@ -3,8 +3,8 @@ set -euo pipefail
 IFS=$'\n\t'
 set -vx
 
-bundle update --bundler
 bundle install
+bundle update --bundler
 bundle update
 bundle clean
 

@@ -5,10 +5,7 @@ target :test do
 end
 
 target :lib do
-  signature "sig", "sig-private"
+  signature "sig"
 
   check "lib"
-
-  library "optparse"
-  library "pathname"
 end

@@ -17,7 +17,9 @@ Gem::Specification.new do |spec|
   spec.metadata["changelog_uri"] = "https://github.com/ybiquitous/easytest/blob/main/CHANGELOG.md"
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  spec.files = Dir["CHANGELOG.md", "LICENSE", "README.md", "exe/*", "lib/**/*.rb", "sig/**/*.rbs"]
+  spec.files = Dir["CHANGELOG.md", "LICENSE", "README.md", "exe/*", "lib/**/*.rb", "sig/**/*.rbs"].reject do |file|
+    file.start_with?("sig/_")
+  end
   spec.bindir = "exe"
   spec.executables = ["easytest"]
   spec.require_paths = ["lib"]

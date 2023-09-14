@@ -5,10 +5,8 @@ target :test do
 end
 
 target :lib do
-  signature "sig", "sig-private"
+  signature "sig"
 
   check "lib"
-
-  library "optparse"
-  library "pathname"
+  library "pathname" # TODO: Remove this from from Ruby 3.2 because `pathname` has be out of a default gem.
 end

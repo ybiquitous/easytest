@@ -55,7 +55,7 @@ namespace :rbs do
         next
       end
 
-      outfile = Pathname(infile.to_s.sub(/^lib/, "sig-private").sub(/\.rb$/, ".rbs"))
+      outfile = Pathname(infile.to_s.sub(/^lib/, "sig/_internal").sub(/\.rb$/, ".rbs"))
       outfile.parent.mkpath
       sh "rbs prototype rb #{infile} > #{outfile}"
     end

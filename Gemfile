@@ -4,7 +4,7 @@ gemspec
 
 # standard libraries at runtime
 gem "optparse"
-gem "pathname"
+# gem "pathname" TODO: Comment out this from from Ruby 3.2 because `pathname` has be out of a default gem.
 
 # dev
 gem "debug"

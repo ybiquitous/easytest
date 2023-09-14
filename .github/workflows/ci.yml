@@ -9,4 +9,4 @@ jobs:
   test:
     uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@main
     with:
-      minimum-ruby-version: 2.7
+      minimum-ruby-version: "3.0"

@@ -4,11 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## Head
 
-- **[Breaking]** Change refinement to `extend` in an anonymous module. The usage should change as follows:
+- **Breaking:** Change refinement to `extend` in an anonymous module. The usage should change as follows:
   ```diff
   -using Easytest::DSL
   +extend Easytest::DSL
   ```
+- **Breaking:** Drop support for Ruby 2.7 (End-of-Life on March 31, 2023)
 - Remove extra whitespaces from console output.
 
 ## 0.9.0

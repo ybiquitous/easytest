@@ -5,12 +5,10 @@ All notable changes to this project will be documented in this file.
 ## Head
 
 - **[Breaking]** Change refinement to `extend` in an anonymous module. The usage should change as follows:
-
-```diff
--using Easytest::DSL
-+extend Easytest::DSL
-```
-
+  ```diff
+  -using Easytest::DSL
+  +extend Easytest::DSL
+  ```
 - Remove extra whitespaces from console output.
 
 ## 0.9.0

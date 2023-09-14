@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Head
+## 0.10.0
 
 - **Breaking:** Change refinement to `extend` in an anonymous module. The usage should change as follows:
   ```diff

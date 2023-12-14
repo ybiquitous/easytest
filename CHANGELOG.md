@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Head
+## 0.10.1
 
 - No actual changes. Just switch to a new simplified release workflow.
 

@@ -2,10 +2,6 @@ name: Release
 
 on:
   workflow_dispatch:
-    inputs:
-      otp:
-        description: "One-time password for RubyGems.org"
-        required: true
 
 concurrency:
   group: ${{ github.workflow }}
@@ -13,8 +9,4 @@ concurrency:
 
 jobs:
   release:
-    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@main
-    with:
-      otp: ${{ github.event.inputs.otp }}
-    secrets:
-      api-key: ${{ secrets.GEM_HOST_API_KEY }}
+    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@new-ruby-release # TODO: Switch to @main

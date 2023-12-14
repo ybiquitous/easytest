@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## Head
+
+- No actual changes. Just switch to a new simplified release workflow.
+
 ## 0.10.0
 
 - **Breaking:** Change refinement to `extend` in an anonymous module. The usage should change as follows:

@@ -9,4 +9,25 @@ concurrency:
 
 jobs:
   release:
-    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@new-ruby-release # TODO: Switch to @main
+    # TODO: uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@new-ruby-release # TODO: Switch to @main
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ruby # latest
+          bundler-cache: true
+      - name: Release gem
+        uses: rubygems/release-gem@v1
+      - name: Create GitHub release
+        run: |
+          tag_name="$(git describe --abbrev=0)"
+          gh release create "${tag_name}" --draft
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

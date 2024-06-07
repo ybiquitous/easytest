@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Head
+## 0.11.0
 
 - Drop Ruby 3.0 support due to EOL (April 2024).
 

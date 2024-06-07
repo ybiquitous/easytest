@@ -71,7 +71,7 @@ module Easytest
     def to_have_attributes: (**untyped expected) -> void
 
     # Expect to satisfy a condition that the given block returns `true`.
-    def to_satisfy: () { (untyped actual) -> bool } -> void
+    def to_satisfy: () { (untyped actual) -> boolish } -> void
 
     # Expect to raise the given exception or an exception with the given message.
     def to_raise: (Class expected, ?(String | Regexp)? with_message) -> void

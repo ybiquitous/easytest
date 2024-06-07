@@ -160,8 +160,8 @@ test "not.to_satisfy" do
   expect { subject(2).not.to_satisfy { |n| n > 1 } }.to_raise "not satisfy"
 end
 
-def subject_block(&block)
-  Easytest::Expectation.new(nil, &block)
+def subject_block(&)
+  Easytest::Expectation.new(nil, &)
 end
 
 raise_thing = -> { raise "foo" }

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Easy testing for Ruby."
   spec.description = "Easytest is a tiny testing framework for Ruby with a familiar DSL."
   spec.homepage = "https://ybiquitous.github.io/easytest/"
-  spec.required_ruby_version = ">= 3.0"
+  spec.required_ruby_version = ">= 3.1"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/ybiquitous/easytest"

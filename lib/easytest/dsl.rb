@@ -23,8 +23,8 @@ module Easytest
       Easytest.add_case Case.new(name: name, only: true, block: block)
     end
 
-    def expect(actual = nil, &block)
-      Expectation.new(actual, &block)
+    def expect(actual = nil, &)
+      Expectation.new(actual, &)
     end
   end
 end

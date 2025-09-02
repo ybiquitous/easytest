@@ -22,7 +22,7 @@ module Easytest
 
     # Expect the given object or block to satisfy some criterion.
     def expect: (untyped actual) -> Easytest::Expectation
-              | { () -> void } -> Easytest::Expectation
+              | () { () -> void } -> Easytest::Expectation
   end
 
   # An expectation in test cases.

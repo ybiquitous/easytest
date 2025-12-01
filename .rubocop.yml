@@ -1,4 +1,5 @@
-require: rubocop-on-rbs
+plugins:
+ - rubocop-on-rbs
 
 AllCops:
   TargetRubyVersion: 3.1
@@ -13,6 +14,10 @@ Layout/IndentationConsistency:
 
 Metrics:
   Enabled: false
+
+Naming/PredicateMethod:
+  Exclude:
+    - 'lib/easytest/runner.rb'
 
 Naming/RescuedExceptionsVariableName:
   Enabled: false

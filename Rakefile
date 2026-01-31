@@ -13,6 +13,7 @@ RDoc::Task.new do |rdoc|
   rdoc.main = "README.md"
   rdoc.rdoc_dir = "doc"
   rdoc.rdoc_files.include("README.md", "sig")
+  rdoc.options << "--encoding=UTF-8"
 end
 
 desc "Run test"

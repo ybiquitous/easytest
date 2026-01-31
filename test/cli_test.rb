@@ -134,26 +134,14 @@ test "watch mode" do
   stderr = Tempfile.create("easytest_cli_test_stderr", __dir__)
 
   pid = Process.spawn("easytest --watch", out: stdout, err: stderr)
-
-  # Wait for output to appear (with timeout)
-  max_wait = 5
-  waited = 0
-  stdout_str = ""
-  stderr_str = ""
-  until waited >= max_wait || stdout.size > 10
-    sleep 0.1
-    waited += 0.1
-    stdout.rewind
-    stderr.rewind
-    stdout_str = stdout.read
-    stderr_str = stderr.read
+  Thread.start(pid) do |pid_in_thread|
+    sleep 1
+    Process.kill("INT", pid_in_thread)
   end
-
-  Process.kill("INT", pid)
   Process.wait(pid)
 
-  expect(stdout_str).to_match "Start watching"
-  expect(stderr_str).to_eq ""
+  expect(File.read(stdout)).to_match "Start watching"
+  expect(File.read(stderr)).to_eq ""
 ensure
   File.unlink(stdout) if stdout
   File.unlink(stderr) if stderr

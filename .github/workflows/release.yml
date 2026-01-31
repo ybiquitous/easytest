@@ -3,30 +3,10 @@ name: Release
 on:
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: true
-
 jobs:
   release:
-    runs-on: ubuntu-latest
+    # TODO: Try the new release workflow on main. Once it is verified, switch to a published version.
+    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@63562a3e2d31bcd83e4cdb2cee35875edbba2ad6 # main
     permissions:
       contents: write
       id-token: write
-    timeout-minutes: 10
-    steps:
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ruby # latest
-          bundler-cache: true
-      - name: Release gem
-        uses: rubygems/release-gem@v1
-      - name: Create GitHub release
-        run: |
-          tag_name="$(git describe --tags --abbrev=0)"
-          gh release create "${tag_name}" --verify-tag --draft
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

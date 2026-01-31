@@ -6,7 +6,7 @@ on:
 jobs:
   release:
     # TODO: Try the new release workflow on main. Once it is verified, switch to a published version.
-    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@29c40e6528c96f53cd41b28c3be537b4cfaa33f5 # change-runner-in-ruby-release-reusable
+    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@63562a3e2d31bcd83e4cdb2cee35875edbba2ad6 # main
     permissions:
       contents: write
       id-token: write

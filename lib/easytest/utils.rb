@@ -28,8 +28,12 @@ module Easytest
     def find_caller_file
       # Ruby 4.0 has a shorter call stack than 3.4, so we search for the first
       # caller location that's outside the easytest library itself
-      lib_dir = File.expand_path("..", __dir__)
-      caller_locations.find { |loc| !loc.absolute_path.start_with?(lib_dir) }&.absolute_path or raise
+      lib_dir = File.expand_path("..", __dir__.to_s)
+      caller_locations&.each do |loc|
+        loc_path = loc.absolute_path
+        return loc_path if loc_path && !loc_path.start_with?(lib_dir)
+      end
+      raise "Failed to find caller file in: #{caller_locations&.first || '<no callers>'}"
     end
   end
 end

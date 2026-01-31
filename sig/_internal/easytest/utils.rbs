@@ -7,5 +7,7 @@ module Easytest
     def self?.pluralize: (String singular, Integer count) -> String
 
     def self?.indent_text: (String text, String indent_string) -> String
+
+    def self?.find_caller_file: () -> String
   end
 end

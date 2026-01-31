@@ -2,9 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## Head
+## 0.12.0
 
 - Drop Ruby 3.1 support due to EOL (March 2025).
+- Fix Ruby 4.0 compatibility for `caller_locations`.
 
 ## 0.11.0
 

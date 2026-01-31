@@ -7,6 +7,6 @@ on:
 
 jobs:
   test:
-    uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@main
+    uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@v2.5.0
     with:
       minimum-ruby-version: 3.1

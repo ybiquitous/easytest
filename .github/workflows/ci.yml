@@ -8,3 +8,5 @@ on:
 jobs:
   test:
     uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@a1a00eb7b474a9299910fa9baf98c380dc8466ec # v2.5.0
+    permissions:
+      contents: read

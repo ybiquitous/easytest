@@ -5,7 +5,7 @@ set -vx
 
 bundle install
 bundle update --bundler
-bundle update
+bundle update --all
 bundle clean
 
 bundle exec rbs collection install

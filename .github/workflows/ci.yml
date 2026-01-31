@@ -10,4 +10,3 @@ jobs:
     uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@main
     with:
       minimum-ruby-version: 3.1
-      default-ruby-version: "4.0" # TODO: Remove this line later once the cache problem is resolved.

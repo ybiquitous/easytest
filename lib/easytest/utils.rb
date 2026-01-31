@@ -24,5 +24,12 @@ module Easytest
     def indent_text(text, indent_string)
       text.gsub(/^(.+)/, "#{indent_string}\\1")
     end
+
+    def find_caller_file
+      # Ruby 4.0 has a shorter call stack than 3.4, so we search for the first
+      # caller location that's outside the easytest library itself
+      lib_dir = File.expand_path("..", __dir__)
+      caller_locations.find { |loc| !loc.absolute_path.start_with?(lib_dir) }&.absolute_path or raise
+    end
   end
 end

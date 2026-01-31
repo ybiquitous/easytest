@@ -11,7 +11,7 @@ module Easytest
 
     def initialize(name:, skipped: false, only: false, block: nil)
       @name = name
-      @file = (caller_locations(3, 1)&.first&.absolute_path or raise)
+      @file = Utils.find_caller_file
       @block = block
       @skipped = skipped
       @only = only

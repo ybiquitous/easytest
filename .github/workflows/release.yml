@@ -5,9 +5,7 @@ on:
 
 jobs:
   release:
-    # TODO: Try the unpublished version with PR https://github.com/ybiquitous/.github/pull/138
-    # uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@f3aa9016849a3bebe447aa3e1ebee363742ab0be # v3.0.0
-    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@fix-ruby-release-with-oidc
+    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@f3aa9016849a3bebe447aa3e1ebee363742ab0be # v3.0.0
     permissions:
       contents: write
       id-token: write

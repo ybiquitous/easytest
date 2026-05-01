@@ -8,5 +8,7 @@ on:
 jobs:
   test:
     uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@f3aa9016849a3bebe447aa3e1ebee363742ab0be # v3.0.0
+    with:
+      minimum-ruby-version: 3.2 # sync with `required_ruby_version` in gemspec
     permissions:
       contents: read

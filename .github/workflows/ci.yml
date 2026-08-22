@@ -6,9 +6,21 @@ on:
   pull_request:
 
 jobs:
+  ruby-version:
+    runs-on: ubuntu-slim
+    outputs:
+      minimum: ${{ steps.required_ruby_version.outputs.minimum }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: required_ruby_version
+        run: |
+          version=$(ruby -e 'puts Gem::Specification.load("easytest.gemspec").required_ruby_version.requirements.first.last')
+          echo "minimum=${version}" >> "${GITHUB_OUTPUT}"
+
   test:
+    needs: ruby-version
     uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@cdefa43486604b3aae79e9d1db24b670475f2c92 # v3.2.0
     with:
-      minimum-ruby-version: 3.2 # sync with `required_ruby_version` in gemspec
+      minimum-ruby-version: ${{ needs.ruby-version.outputs.minimum }}
     permissions:
       contents: read

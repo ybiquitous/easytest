@@ -10,6 +10,10 @@ task lint: %i[rubocop rbs:setup typecheck:run typecheck:stats rdoc]
 RuboCop::RakeTask.new
 
 RDoc::Task.new do |rdoc|
+  # Avoid `Encoding::InvalidByteSequenceError` in the Aliki theme on a non-UTF-8 locale (e.g. CI):
+  # https://github.com/ruby/rdoc/issues/1574
+  Encoding.default_external = Encoding::UTF_8
+
   rdoc.main = "README.md"
   rdoc.rdoc_dir = "doc"
   rdoc.rdoc_files.include("README.md", "sig")

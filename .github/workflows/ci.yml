@@ -11,7 +11,8 @@ jobs:
     outputs:
       minimum: ${{ steps.required_ruby_version.outputs.minimum }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - id: required_ruby_version
         run: |
           version=$(ruby -e 'puts Gem::Specification.load("easytest.gemspec").required_ruby_version.requirements.first.last')

@@ -1,5 +1,6 @@
 require "easytest"
 
+# @type self: Easytest::DSL
 extend Easytest::DSL
 
 test "simple case" do

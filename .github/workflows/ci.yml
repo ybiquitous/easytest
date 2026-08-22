@@ -7,7 +7,7 @@ on:
 
 jobs:
   ruby-version:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     outputs:
       minimum: ${{ steps.required_ruby_version.outputs.minimum }}
     steps:

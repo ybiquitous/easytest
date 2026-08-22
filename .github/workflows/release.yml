@@ -5,7 +5,9 @@ on:
 
 jobs:
   release:
-    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@cdefa43486604b3aae79e9d1db24b670475f2c92 # v3.2.0
+    # TODO: Revert to a published tag version after the workaround is no longer necessary.
+    # Ref: https://github.com/ybiquitous/.github/pull/176
+    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@39892eb68efea11754cc845abd8072b1b196987e # disable-gem-attestations
     permissions:
       contents: write
       id-token: write

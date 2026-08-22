@@ -7,3 +7,5 @@ updates:
     groups:
       ybiquitous-actions:
         patterns: ["ybiquitous/.github/*"]
+    cooldown:
+      exclude: ["ybiquitous/.github/*"]

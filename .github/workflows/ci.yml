@@ -22,7 +22,7 @@ jobs:
 
   test:
     needs: ruby-version
-    uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@1ed723b9d1b3a0073f2ae7a0be6c0ac1e4cf269b # v3.2.1
+    uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@5e88270a455e5daf2387974dcb3cdea448076387 # v3.2.2
     with:
       minimum-ruby-version: ${{ fromJSON(needs.ruby-version.outputs.minimum) }}
     permissions:

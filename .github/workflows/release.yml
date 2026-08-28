@@ -5,7 +5,7 @@ on:
 
 jobs:
   release:
-    uses: ybiquitous/.github/.github/workflows/ruby-test-reusable.yml@5e88270a455e5daf2387974dcb3cdea448076387 # v3.2.2
+    uses: ybiquitous/.github/.github/workflows/ruby-release-reusable.yml@5e88270a455e5daf2387974dcb3cdea448076387 # v3.2.2
     permissions:
       contents: write
       id-token: write
